@@ -1,26 +1,17 @@
 (function($) {
     'use strict';
     $('.circle-svg-a a, .circle-svg-span span').on("click", function(e) {
-        var x = e.pageX;
-        var y = e.pageY;
-        var clickY = y - $(this).offset().top;
-        var clickX = x - $(this).offset().left;
+
         var box = $(this);
-        var setX = parseInt(clickX);
-        var setY = parseInt(clickY);
+        var setX = parseInt(e.pageX - $(this).offset().left);
+        var setY = parseInt(e.pageY - $(this).offset().top);
         var radius = $(box).outerWidth() / 2;
         if ($(box).find("svg").length === 0) {
-            $(box).append('<svg>\n\
-                             <circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (radius - 10) + '"></circle>'
-                    + '</svg>');
+            $(box).append('<svg><circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (radius - 10) + '"></circle></svg>');
         }
 
         $(box).find('svg').css('opacity', '1');
-
-        $(box).find('svg').animate({
-            opacity: '0'
-        }, {duration: 800, queue: false});
-
+        $(box).find('svg').animate({opacity: '0'}, {duration: 800, queue: false});
         var c1 = $(box).find(".circle-1");
 
         c1.attr('cx', setX);
@@ -28,8 +19,7 @@
 
         var addv = radius - 10;
 
-        $(c1).animate({"r": radius}, {
-            duration: 350,
+        $(c1).animate({"r": radius}, {duration: 350,
             step: function(val) {
                 c1.attr("r", (val + addv));
             }
@@ -43,11 +33,186 @@
 
     var bg_picture = $('#bg_picture');
 
-
-    $(bg_picture).addClass('show');
-
+    $(bg_picture).addClass('show_off');
 
 
+
+
+    var img_link = $('.loadimg');
+
+    $(img_link).on("mousedown", function(c) {
+        var e = $(this).parent().parent();
+
+        create_svg(e, c);
+
+    });
+
+    $(img_link).on("mouseup", function(c) {
+        var e = $(this).parent().parent();
+        hide_svg(e, c);
+         setTimeout(function(){  $(e).find('svg').detach();  },200);
+    });
+
+    $(img_link).on("mouseleave", function(c) {
+        var e = $(this).parent().parent();
+        hide_svg(e, c);
+        setTimeout(function(){  $(e).find('svg').detach();  },200);
+    });
+
+
+    
+
+
+
+    var user_link = $('.user_link');
+
+    $(user_link).on("mousedown", function(c) {
+        var e = $(this).parent();
+        create_svg(e, c);
+    });
+
+   $(user_link).on("mouseup", function(c) {
+        var e = $(this).parent();
+        hide_svg(e, c);
+        setTimeout(function(){  $(e).find('svg').detach();  },200);
+    });
+
+    $(user_link).on("mouseleave", function(c) {
+        var e = $(this).parent();
+        hide_svg(e, c);
+        setTimeout(function(){  $(e).find('svg').detach();  },200);
+    });
+   
+   
+
+    function create_svg(e, c) {
+
+        var box = $(e);
+
+        var setX = parseInt(c.pageX - $(e).offset().left);
+        var setY = parseInt(c.pageY - $(e).offset().top);
+        var radius = $(box).outerWidth() / 2;
+        if ($(box).find("svg").length === 0) {
+            $(box).append('<svg><circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (radius - 10) + '"></circle></svg>');
+        }
+
+        $(box).find('svg').css('opacity', '0.2');
+        $(box).find('svg').animate({opacity: '0.8'}, {duration: 200, queue: false});
+        var c1 = $(box).find(".circle-1");
+
+        c1.attr('cx', setX);
+        c1.attr('cy', setY);
+
+        var start_r = radius;
+
+        $(c1).animate({"r": radius}, {duration: 350,
+            step: function(val) {
+                c1.attr("r", (val + start_r));
+            }
+        });
+
+
+    }
+
+    function hide_svg(e, c) {
+        var box = $(e);
+        $(box).find('svg').animate({opacity: '0'}, {duration: 200, queue: false, complete:function(){
+          }
+        });
+    }
+
+
+
+
+    $('.main .front_main_area .widget').each(function(e){
+       
+        if( $(this).find('ul').size() > 0 ) {
+       
+       var widget_list = $(this);
+       
+        $(widget_list).addClass('widget_list');
+        
+        var title_height = $(widget_list).find('h2').outerHeight();
+        
+        $(widget_list).css('max-height', title_height);
+        
+        if( $(widget_list).parent().find('.widget_list_container').size() < 1 ) {
+            
+            $(widget_list).parent().append('<div class="widget_list_container"></div>');
+        }
+        
+        $('.widget_list_container').append($(widget_list).detach());
+        
+        
+        var pTop = $(widget_list).parent().offset().top;
+        var mTop = $(widget_list).offset().top - pTop;
+        
+        var pLeft = $(widget_list).parent().offset().left;
+        var mLeft =  $(widget_list).offset().left - pLeft;
+        
+        var mWidht = $(widget_list).outerWidth();
+        
+        $(widget_list).css({
+            'top': mTop+'px',
+            'left': mLeft+'px',
+            'width': mWidht+'px'
+        });
+        
+        setTimeout(function(){
+             $(widget_list).css({
+            'position': 'absolute'
+            });
+        },500);
+        
+        }
+        
+    });
+
+
+    var list_title = $('.main .widget_list h2');
+    
+    var zIndex = 10;
+
+    $(list_title).on("click", function(c) {
+
+        var e = $(this);
+        
+        var title_height = $(e).outerHeight();
+
+        create_svg(e, c);
+
+        $(e).parent('.widget').toggleClass('show');
+        zIndex++;
+        
+        $(e).parent().css('z-index', zIndex);
+        if( $(e).parent('.widget').hasClass('show') ) {
+            
+        
+        
+        $(e).parent().animate({
+            'max-height': '7000px'
+        }, {duration: 500, queue: false });
+        
+        } else {
+            
+        
+            
+         $(e).parent().animate({
+            'max-height': title_height + 'px'
+        }, {duration: 500, queue: false, complete:function(){
+             $(e).parent().css('z-index', '0'); 
+        }}); 
+            
+        }
+
+
+        setTimeout(function(){
+            hide_svg(e, c);
+        },200);
+
+    });
+
+    
 
 
 
