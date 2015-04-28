@@ -37,59 +37,47 @@
 
 
 
+    function element_click(e) {
 
-    var img_link = $('.loadimg');
+        var element = e;
 
-    $(img_link).on("mousedown", function(c) {
-        var e = $(this).parent();
+        $(element).on("mousedown", function(c) {
+            var e = $(this).parent();
 
-        create_svg(e, c);
+            create_svg(e, c);
 
-    });
+        });
 
-    $(img_link).on("mouseup", function(c) {
-        var e = $(this).parent();
-        hide_svg(e, c);
-        setTimeout(function() {
-            $(e).find('svg').detach();
-        }, 200);
-    });
+        $(element).on("mouseup", function(c) {
+            var e = $(this).parent();
+            hide_svg(e, c);
+            setTimeout(function() {
+                $(e).find('svg').detach();
+            }, 200);
+        });
 
-    $(img_link).on("mouseleave", function(c) {
-        var e = $(this).parent();
-        hide_svg(e, c);
-        setTimeout(function() {
-            $(e).find('svg').detach();
-        }, 200);
-    });
-
-
-
+        $(element).on("mouseleave", function(c) {
+            var e = $(this).parent();
+            hide_svg(e, c);
+            setTimeout(function() {
+                $(e).find('svg').detach();
+            }, 200);
+        });
 
 
 
-    var user_link = $('.user_link');
+    }
+    
+    
 
-    $(user_link).on("mousedown", function(c) {
-        var e = $(this).parent();
-        create_svg(e, c);
-    });
 
-    $(user_link).on("mouseup", function(c) {
-        var e = $(this).parent();
-        hide_svg(e, c);
-        setTimeout(function() {
-            $(e).find('svg').detach();
-        }, 200);
-    });
+    element_click($('.loadimg'));
+    
+    element_click($('.user_link'));
 
-    $(user_link).on("mouseleave", function(c) {
-        var e = $(this).parent();
-        hide_svg(e, c);
-        setTimeout(function() {
-            $(e).find('svg').detach();
-        }, 200);
-    });
+    element_click($('.profile_buttons .btn'));
+
+   
 
 
 
@@ -133,18 +121,18 @@
 
     $('.main.footer').ready(function() {
 
-        var secondary = $('.main.footer .col-md-12');
+        var secondary = $('.main.footer .col-md-12:first-child');
 
         var evo_Calr = $(secondary).find('.widget_plugin_evo_Calr');
 
         var longdesc = $(secondary).find('.widget_core_coll_longdesc');
-        
+
         var menu_link = $(secondary).find('.widget_core_profile_menu_link');
 
-        
-        $(secondary).prepend('<div class="info_section"></div>');
-        
-        
+        if ($(secondary).find('.info_section').size() < 1) {
+            $(secondary).prepend('<div class="info_section"></div>');
+        }
+
         $('.info_section').append($(menu_link).detach());
         $('.info_section').append($(longdesc).detach());
         $('.info_section').append($(evo_Calr).detach());
@@ -158,7 +146,7 @@
 
     $('.main.footer .widget').each(function(e) {
 
-        if ($(this).find('ul').size() > 0) {
+        if ($(this).find('ul').size() > 0 && $(this).find('.page-header').size() > 0) {
             var widget_list = $(this);
 
             $(widget_list).addClass('secondary_area');
@@ -173,9 +161,11 @@
 
             var widget_list = $(this);
 
-            $(widget_list).addClass('widget_list');
+            $(widget_list).addClass('widget_list list_index-' + e);
 
             var title_height = $(widget_list).find('h2').outerHeight();
+            
+            $(widget_list).find('h2').append('<a href="#tab'+e+'" data-toggle="tab"></a>');
 
             $(widget_list).css('max-height', title_height);
 
@@ -186,16 +176,26 @@
 
             $('.widget_list_container').append($(widget_list).detach());
 
-            var u = $(widget_list).find('>ul').size();
+
+
+            /*$(widget_list).append('<div class="tab-body"></div>');
+            
+             $(widget_list).find('.tab-body').append($(widget_list).children().detach());*/
+            
+            
+            
+            
+
+           /* var u = $(widget_list).find('>ul').size();
 
             for (var i = 0; i < u; i++) {
 
-                $(widget_list).append('<span class="list-' + i + '"></span>');
+                $(widget_list).append('<span class="list_container list-' + i + '"></span>');
 
-                $('.list-' + i).append($(widget_list).find('>h4:first-child').detach());
-                $('.list-' + i).append($(widget_list).find('>ul:first-child').detach());
+                $(widget_list).find('.list-' + i).append($(widget_list).find('h4').first().detach());
+                $(widget_list).find('.list-' + i).append($(widget_list).find('ul').first().detach());
 
-            }
+            }*/
 
 
 
@@ -241,10 +241,12 @@
         $(e).parent().css('z-index', zIndex);
         if ($(e).parent('.widget').hasClass('show')) {
 
-
+            var mWidth = $(e).siblings('.list_container').outerWidth();
 
             $(e).parent().animate({
-                'max-height': '7000px'
+                'max-height': '7000px',
+                'max-width': '100%',
+                'width': mWidth
             }, {duration: 500, queue: false});
 
         } else {
@@ -252,7 +254,8 @@
 
 
             $(e).parent().animate({
-                'max-height': title_height + 'px'
+                'max-height': title_height + 'px',
+                'max-width': '40%'
             }, {duration: 500, queue: false, complete: function() {
                     $(e).parent().css('z-index', '0');
                 }});

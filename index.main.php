@@ -116,7 +116,7 @@ if( $disp != 'front' )
 ?>
 <!-- =================================== START OF MAIN AREA =================================== -->
 	<div class="row">
-		<div class="col-md-12<?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
+		<div class="col-md-12 coll-xs-12 col-sm-12 <?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
 
 	<?php
 	if( ! in_array( $disp, array( 'login', 'lostpassword', 'register', 'activateinfo' ) ) )
