@@ -53,6 +53,7 @@ siteskin_include( '_site_body_header.inc.php' );
 
 <?php     
 
+echo '<div class="view-container"><div class="container"></div></div>';
 
     
 if( $is_pictured_page )
