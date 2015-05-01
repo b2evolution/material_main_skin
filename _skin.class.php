@@ -49,6 +49,107 @@ class material_main_Skin extends Skin
 			) );
 	}
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+	 * Get the names of the widget sets that this skin is making available.
+	 *
+ 	 * A skin can make one or several widgets sets available, as recommended sets of widgets that it has been designed to work with.
+ 	 * This is optional. b2evolution can always provide a default widget set.
+	 *
+	 * @todo EXPERIMENTAL*/
+	 
+	function get_suggested_widget_sets()
+	{
+		// In the UI, b2evolution should also always offer default => Default widget set
+		$r = array(
+				'rec' => T_('Recommended widget set'),
+				'alt' => T_('Alternative widget set'),
+				'full' => T_('Full widget set'),
+			);
+
+		return $r;
+	}
+
+
+	/**
+	 * Get the details of a widget set.
+	 *
+	 * For each of the widget sets of the previous function, the skin can here define what widgets go inot each container.
+	 * If a container is not defined in a widget set, b2evolution will use the default widget set for that container when creating a collection
+	 * (or use the existing widgets if the container was already created -- case of a skin change on an existing collection)
+    *
+    * For each container we list the widgets in order of appearance.
+    * Each widget is defined by: the widget code, the source (core or plugin), an array of params.
+    * Any param that is not defined will receive the default value of the widget.
+	 *
+	 * @todo EXPERIMENTAL
+	*/
+        
+        
+	function get_suggested_widget_definitions( $set_name )
+	{
+		switch( $set_name )
+		{
+			case 'rec':
+				return array(
+						'Front Page Main Area' => array(
+								array( 'coll_post_list', 'core', array( 'attached_pics' => 'first' ) ),
+							),
+						'Sidebar' => array(
+								array( 'coll_longdesc', 'core', array( 'title' => '$title$' ) ),
+								array( 'coll_search_form', 'core' ),
+								array( 'coll_category_list', 'core' ),
+						  ),
+						'Sidebar 2' => array( 
+								array( 'free_html', 'core', 'a:5:{s:5:"title";s:9:"Sidebar 2";s:7:"content";s:162:"This is the "Sidebar 2" container. You can place any widget you like in here. In the evo toolbar at the top of this page, select "Customize", then "Blog Widgets".";s:11:"widget_name";s:9:"Free HTML";s:16:"widget_css_class";s:0:"";s:9:"widget_ID";s:0:"";}' )
+						  ),
+						// Any container that is not specified here should be configured as the default b2evo config, or left untouched in case it's already configured
+					);
+			
+			case 'alt':
+				return array(
+						// ...
+					);
+			
+			case 'full':
+				return array( 
+						// ...
+					);
+
+			default:
+				return array(); // EMPTY ARRAY
+		}
+	}
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 	/**
 	 * Get definitions for editable params

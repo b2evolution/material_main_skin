@@ -52,6 +52,8 @@ siteskin_include( '_site_body_header.inc.php' );
 <div class="main main_top">
 
 <?php     
+
+
     
 if( $is_pictured_page )
 { // Display a picture from skin setting as background image
@@ -65,6 +67,7 @@ if( $is_pictured_page )
 	echo '</div>';
 }
 ?>
+
 
 
 

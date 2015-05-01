@@ -96,7 +96,10 @@ echo $params['html_tag'];
 
 <body<?php skin_body_attrs( array( 'class' => $params['body_class'] ) ); ?>>
 
+    
 <?php
+
+
 // ---------------------------- TOOLBAR INCLUDED HERE ----------------------------
 require $skins_path.'_toolbar.inc.php';
 // ------------------------------- END OF TOOLBAR --------------------------------
