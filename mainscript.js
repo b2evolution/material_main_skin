@@ -11,12 +11,16 @@
 
 
 
+   
+
     element_click($('.loadimg'));
 
     element_click($('.user_link'));
 
     element_click($('.profile_buttons .btn'));
 
+
+     /* Click events setup */
 
     function element_click(e) {
 
@@ -45,18 +49,11 @@
             }, 200);
         });
 
-
-
     }
 
 
 
-
-
-
-
-
-
+    /* Create circle in svg to its parent */
 
     function create_svg(e, c) {
 
@@ -65,6 +62,8 @@
         var setX = parseInt(c.pageX - $(e).offset().left);
         var setY = parseInt(c.pageY - $(e).offset().top);
         var radius = $(box).outerWidth() / 2;
+        
+        /* Create circle */
         if ($(box).find("svg").length === 0) {
             $(box).append('<svg><circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (radius - 10) + '"></circle></svg>');
         }
@@ -77,15 +76,18 @@
         c1.attr('cy', setY);
 
         var start_r = radius;
+        
+        /* Start animation of circle */
 
         $(c1).animate({"r": radius}, {duration: 350,
             step: function(val) {
                 c1.attr("r", (val + start_r));
             }
         });
-
-
+        
     }
+    
+    /* End animation of circle */
 
     function hide_svg(e, c) {
         var box = $(e);
@@ -96,6 +98,8 @@
 
 
 
+    /* Creating 3 columns (Info section) in secondary area with description, calendar and profile link widgets */
+    
     $('.main.footer').ready(function() {
 
         var secondary = $('.main.footer .col-md-12:first-child');
@@ -120,7 +124,8 @@
 
 
 
-
+    /* Identify widget with lists in secondary area */
+    
     $('.main.footer .widget').each(function(e) {
 
         if ($(this).find('ul').size() > 0 && $(this).find('.page-header').size() > 0) {
@@ -133,6 +138,8 @@
 
 
 
+    /* Search widget label animation */
+    
     $('.main .widget_core_coll_search_form').ready(function() {
 
         $('.main .widget_core_coll_search_form form input[type=text]').focusin(function() {
@@ -154,20 +161,21 @@
 
 
 
+    /* Lists setup in main area */
 
     var view_container = $('.view-container');
 
     $('.main .front_main_area .widget').each(function(e) {
 
-        if ($(this).find('ul').size() > 0) {
+        if ( $(this).hasClass( 'widget_core_coll_category_list' ) ||
+              $(this).hasClass( 'widget_core_coll_link_list' ) ||
+               $(this).hasClass( 'widget_core_coll_comment_list' ) ) {
 
             var widget_list = $(this);
 
 
 
             $(widget_list).addClass('widget_list');
-
-
 
 
             var widget_list_view = $(widget_list).clone();
@@ -231,7 +239,8 @@
     
     var current_list;
 
-    var zIndex = 10;
+    
+    /* Open list in a popover view */
 
     $(list_title).on("click", function(c) {
 
@@ -265,7 +274,8 @@
 
     });
 
-   
+    /* Close list in popover view */
+    
     $(close_trigger).on("click", function(c) {
         $(view_container).removeClass('show');
 
