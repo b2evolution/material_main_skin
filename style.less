@@ -160,7 +160,7 @@ input[type="submit"],
     outline: 0;
 }
 
-.main a:hover {
+.main .content a:hover {
     color: @primarycolor !important;
 }
 
@@ -566,6 +566,7 @@ svg {
     position: relative;
 
 
+
     .main_top {
         display: table-row;
         height: 100%;
@@ -604,7 +605,7 @@ svg {
                         float: left; /* Default */
                         clear: both;
                         width: 100%;
-                        margin: 0 0 0.6em;
+                        margin: 0;
                     }
 
 
@@ -618,6 +619,7 @@ svg {
 
                     .widget_core_user_links {
                         text-align: right;
+                        margin: 15px 0;
                     }
 
                     .widget_core_coll_avatar {
@@ -634,6 +636,11 @@ svg {
 
                 }
 
+                .widget_core_user_links a span {
+                    font-size: 1.4em;
+                }
+
+
             }
         }
 
@@ -645,9 +652,11 @@ svg {
 
 
 .widget_core_coll_avatar {
-    /*position: absolute;
-    left: 0;
-    top: 2em;*/
+
+    a {
+        display: inline-block;
+        position: relative; 
+    }
 
     img {
 
@@ -655,7 +664,6 @@ svg {
         -moz-transition: box-shadow 0.5s;
         transition: box-shadow 0.5s;
 
-        /*box-shadow: 0px 2px 1px -1px rgba(174, 174, 174, 0.6);*/
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.4);
     }
 
@@ -677,11 +685,15 @@ svg {
     -moz-transition: background @a;
     transition: background @a;
 }
+
 @tY: 0px;
 
 @tS: 0.9;
 
+@hD: 1s;
+
 @o: 0.2s; 
+
 .view-container {
     position: absolute;
     top: 0;
@@ -703,6 +715,7 @@ svg {
         height: 100%;
         position: relative;
         text-align: center;
+        z-index: 2;
     }
 
 
@@ -718,12 +731,28 @@ svg {
         text-align: left;
         visibility: hidden;
 
+        @sY: -10px;
+        
+        
+        
+
         h2 {
             font-size: 2.0em;
             font-weight: 300;
             padding-bottom: 1em;
             color: @primarycolor;
 
+            -webkit-transform: translateY(@sY);
+            -moz-transform: translateY(@sY);
+            -ms-transform: translateY(@sY);
+            -o-transform: translateY(@sY);
+            transform: translateY(@sY);
+
+            opacity: 0;
+
+            -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
+            -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
+            transition: transform 0.5s @hD, opacity 0.5s @hD;
 
             .close-trigger {
                 position: absolute;
@@ -850,12 +879,18 @@ svg {
         visibility: visible;
         display: inline-block !important;
 
-        h4 {
+        h2 {
             opacity: 1;
 
-            -webkit-transition: opacity @a 0.7s;
-            -moz-transition: opacity @a 0.7s;
-            transition: opacity @a 0.7s;
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            transform: translateY(0);
+
+            -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
+            -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
+            transition: transform 0.5s @hD, opacity 0.5s @hD;
         }
 
         ul {
@@ -1014,23 +1049,120 @@ svg {
 
 /* Social Icons */
 
-.widget--social-media-links {
-    display: inline-block;
-}
 
-.widget--social-media-links a {
-    background: rgba(255, 255, 255, 0) !important;
-    text-align: center;
 
-    span {
-        font-size: 20px !important;
+
+
+body .main .widget--social-media-links {
+    margin-top: 15px;
+    text-align: right;
+
+
+    a[class*="ufld--bg"] {
+
+        span {
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        span:after {
+            content: '';
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0); 
+
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+
+            -webkit-transition: background 0.3s;
+            -moz-transition: background 0.3s;
+            transition: background 0.3s;
+        }
+
+        span:hover::after {
+
+            background: rgba(255, 255, 255, 0.1); 
+
+            -webkit-transition: background 0.3s;
+            -moz-transition: background 0.3s;
+            transition: background 0.3s;
+        }
+
+
     }
 
+
+    a[class*="ufld--hovertext"] {
+        background: transparent !important;
+        -webkit-transition: all 0s;
+        -moz-transition: all 0s;
+        transition: all 0s;
+        span {
+            -webkit-transition: @ts;
+            -moz-transition: @ts;
+            transition: @ts;
+
+        }
+        span:hover {
+            -webkit-transition: @ts;
+            -moz-transition: @ts;
+            transition: @ts;
+        }
+
+
+
+    }
+
+    @ts: all .2s ease-in-out;
+
+
+    a[class*="ufld--hoverbg"]{
+
+        span {
+            border-radius: 50%;
+            color: @textcolor;
+
+            -webkit-transition: @ts;
+            -moz-transition: @ts;
+            transition: @ts;
+        }
+        span:hover {
+            -webkit-transition: @ts;
+            -moz-transition: @ts;
+            transition: @ts;
+        }
+
+
+    }
+
+
+    a {
+        background: rgba(255, 255, 255, 0) !important;
+        margin: 0 0px 0px 10px;
+        text-align: center;
+
+        -webkit-transition: background 0.2s;
+        -moz-transition: background 0.2s;
+        transition: background 0.2s;
+    }
+
+
+    a:hover {
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.0);
+        color: @textcolor;
+
+        -webkit-transition: background 0.2s;
+        -moz-transition: background 0.2s;
+        transition: background 0.2s;
+    }
+
+
 }
-.widget--social-media-links a:hover {
-    background: rgba(255, 255, 255, 0) !important;
-    border-radius: 50%;
-}
+
 
 
 /* Widget Lists */
@@ -1506,12 +1638,37 @@ svg {
     }
 }
 
-.profile_column_left {
+#skin_wrapper {
+
+    .pageHeader {
+
+        h1 {
+            margin: 1em 0 0;
+            font-size: 1.8em;
+            font-weight: 300;
+        }
+
+    }
+
+}
+
+
+
+#skin_wrapper .profile_column_left {
 
     .profile_avatar {
         box-shadow: 0 0 0;
         border: 0;
         padding: 0;
+        display: block;
+        margin-left: 0;
+        float: none;
+        background: transparent;
+
+        a {
+            display: inline-block;
+            position: relative;
+        }
 
         img {
             width: 178px;
@@ -1524,10 +1681,8 @@ svg {
     h1 {
         color: @primarycolor;
         font-weight: 300;
-
-        padding: 0.4em;
         margin: 0;
-        padding: 2em 0em 0;
+        padding: 0;
 
     }
 
@@ -1544,6 +1699,37 @@ svg {
     }
 
     .profile_buttons {
+
+
+        .btn-warning {
+            color: #f0ad4e;
+            button {
+                color: #f0ad4e;
+            }
+        }
+        .btn-default {
+            color: #666;
+            button {
+                color: #666;
+            }
+        }
+        .btn-primary {
+            color: @primarycolor;
+            button {
+                color: @primarycolor;
+            }
+        }
+        .btn-success {
+            color: #5cb85c;
+            button {
+                color: #5cb85c; 
+            }
+        }
+
+
+
+
+
         p {
             position: relative;
             display: inline-block;
@@ -1659,12 +1845,13 @@ svg {
     .panel-default {
         background: #fff;
         border: 0;
-        box-shadow: 0 2px 5px -1px rgba(0,0,0,.6);
-        padding: 2em;
+        box-shadow: 0 1px 5px -1px rgba(0,0,0,.6);
+        padding: 0em;
         border-radius: 2px;
 
         .panel-heading {
-            font-size: 1.6em;
+            font-size: 1.9em;
+            padding: 0.6em 1em 0.4em !important;
             color: @primarycolor;
             font-weight: 300;
             border: 0;
@@ -1672,9 +1859,11 @@ svg {
         }
 
         .panel-body {
+            padding: 0 2.6em 1.6em;
 
             .form-group {
                 margin: 0;
+                padding: 0;
 
                 .control-label {
                     font-weight: 500;
@@ -1682,6 +1871,7 @@ svg {
                     text-align: left;
                     vertical-align: middle;
                     padding: 0.8em 0px;
+                    padding-right: 18px;
                     text-transform: uppercase;
 
                     span {
@@ -1814,12 +2004,14 @@ svg {
 
     .widget_core_user_links {
         padding: 2em;
-        text-align: center;
+        text-align: center !important;
         a {
             margin-right: 2em;
+
             span {
-                font-size: 34px !important;
-                color: #666;
+                font-size: 2.0em !important;
+                width: 50px;
+                line-height: 50px;
             }
 
         }
@@ -1951,24 +2143,14 @@ svg {
 
                 a {
                     margin: 0;
-                    margin-right: 14px;
-                    width: auto;
+                    margin-right: 8px;
+                    width: 30px;
                     height: auto;
+                    background: transparent;
 
                     span {
                         font-size: 1em;
-                        line-height: 40px;
-                        display: block;
-                        color: rgba(0, 0, 0, 0.81);
-                        -webkit-transition: color 0.3s;
-                        -moz-transition: color 0.3s;
-                        transition: color 0.3s;
-                    }
-                    span:hover {
-                        color: @primarycolor;
-                        -webkit-transition: color 0.3s;
-                        -moz-transition: color 0.3s;
-                        transition: color 0.3s;
+                        line-height: 30px;
                     }
 
                 }
@@ -2086,7 +2268,7 @@ svg {
 .PageTop {
     margin-top: 20px;
     .widget--social-media-links {
-        text-align: right;
+
     }
 }
 div.widget_core_coll_tagline {

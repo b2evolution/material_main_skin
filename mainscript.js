@@ -9,7 +9,7 @@
     element_click($('.profile_buttons .btn'));
 
 
-     /* Click events setup */
+    /* Click events setup */
 
     function element_click(e) {
 
@@ -39,12 +39,16 @@
         });
 
     }
-
+    
+    
+ 
 
 
     /* Create circle in svg to its parent */
 
-    function create_svg(e, c) {
+    function create_svg(e, c, x, y) {
+        
+        
 
         var box = $(e);
 
@@ -52,9 +56,21 @@
         var setY = parseInt(c.pageY - $(e).offset().top);
         var radius = $(box).outerWidth() / 2;
         
+        var radiusMax = Math.max(parseInt($(box).outerWidth()), parseInt($(box).outerHeight()));
+        
+        
+        
+        if( x !== null || y !== null ) {
+            setX = x;
+            setY = y;
+            
+        }
+        
+        var start_r = radiusMax * 0.4;
+
         /* Create circle */
         if ($(box).find("svg").length === 0) {
-            $(box).append('<svg><circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (radius - 10) + '"></circle></svg>');
+            $(box).append('<svg><circle class="circle-1" cx="' + setX + '" cy="' + setY + '" r="' + (start_r) + '"></circle></svg>');
         }
 
         $(box).find('svg').css('opacity', '0.2');
@@ -64,18 +80,18 @@
         c1.attr('cx', setX);
         c1.attr('cy', setY);
 
-        var start_r = radius;
-        
+        c1.attr('r', start_r);
+
         /* Start animation of circle */
 
-        $(c1).animate({"r": radius}, {duration: 350,
+        $(c1).animate({"r": radiusMax}, {duration: 350,
             step: function(val) {
                 c1.attr("r", (val + start_r));
             }
         });
-        
+
     }
-    
+
     /* End animation of circle */
 
     function hide_svg(e, c) {
@@ -88,7 +104,7 @@
 
 
     /* Creating 3 columns (Info section) in secondary area with description, calendar and profile link widgets */
-    
+
     $('.main.footer').ready(function() {
 
         var secondary = $('.main.footer .col-md-12:first-child');
@@ -112,9 +128,22 @@
 
 
 
+    /* Social Icons Setup */
+
+    $('.widget--social-media-links a').each(function() {
+
+        var mthis = $(this);
+
+        var class_attr = $(mthis).attr('class');
+
+        $(mthis).children('span').addClass(class_attr);
+
+    });
+
+
 
     /* Identify widget with lists in secondary area */
-    
+
     $('.main.footer .widget').each(function(e) {
 
         if ($(this).find('ul').size() > 0 && $(this).find('.page-header').size() > 0) {
@@ -128,7 +157,7 @@
 
 
     /* Search widget label animation */
-    
+
     $('.main .widget_core_coll_search_form').ready(function() {
 
         $('.main .widget_core_coll_search_form form input[type=text]').focusin(function() {
@@ -156,9 +185,9 @@
 
     $('.main .front_main_area .widget').each(function(e) {
 
-        if ( $(this).hasClass( 'widget_core_coll_category_list' ) ||
-              $(this).hasClass( 'widget_core_coll_link_list' ) ||
-               $(this).hasClass( 'widget_core_coll_comment_list' ) ) {
+        if ($(this).hasClass('widget_core_coll_category_list') ||
+                $(this).hasClass('widget_core_coll_link_list') ||
+                $(this).hasClass('widget_core_coll_comment_list')) {
 
             var widget_list = $(this);
 
@@ -168,7 +197,7 @@
 
 
             var widget_list_view = $(widget_list).clone();
-            
+
             $(widget_list_view).find('h2').append('<span class="close-trigger"></span>');
 
 
@@ -225,10 +254,10 @@
     var list_title = $('.main .widget_lists_container .widget_list h2');
 
     var close_trigger = $('.close-trigger');
-    
+
     var current_list;
 
-    
+
     /* Open list in a popover view */
 
     $(list_title).on("click", function(c) {
@@ -237,39 +266,70 @@
 
         create_svg(e, c);
 
+
         $(e).addClass('shadow');
+
 
         setTimeout(function() {
             hide_svg(e, c);
+
+            // create_svg(view_container, c);
+            $(view_container).addClass('show');
+
+
+
+            var view_index = $(e).parent().index();
+
+            console.log('view index:' + view_index);
+
+            var widget_list_view = $(view_container).children().children().eq(view_index);
+
+            $(widget_list_view).addClass('show');
+
+            var startWidth = $(widget_list_view).outerWidth() * 0.8;
+            var endWidth = $(widget_list_view).outerWidth();
+
+
+
+            $(widget_list_view).css({
+                width: startWidth
+            }).animate({
+                width: endWidth
+            }, {
+                duration: 700,
+                queue: false,
+                complete: function() {
+                    var x = $(widget_list_view).outerWidth() / 2;
+                    var y = $(widget_list_view).outerHeight() / 2;
+                    
+                    create_svg(widget_list_view, c, x, y);
+                    
+                    setTimeout(function() {
+                        hide_svg(widget_list_view, c);
+                        setTimeout(function() {
+                            $(widget_list_view).find('svg').detach();
+                        }, 200);
+                    }, 300);
+                }
+            });
+
+
+
+            current_list = $(widget_list_view);
+
+            //$(widget_list_view).css({'max-height': '7000px'});
+
         }, 200);
-
-
-        $(view_container).addClass('show');
-
-        var view_index = $(e).parent().index();
-
-        console.log('view index:' + view_index);
-
-        var widget_list_view = $(view_container).children().children().eq(view_index);
-
-
-        $(widget_list_view).addClass('show');
-
-        current_list = $(widget_list_view);
-
-        //$(widget_list_view).css({'max-height': '7000px'});
-
-
 
     });
 
     /* Close list in popover view */
-    
+
     $(close_trigger).on("click", function(c) {
         $(view_container).removeClass('show');
 
         $(current_list).removeClass('show');
-        
+
         console.log('close');
     });
 
