@@ -2,17 +2,6 @@
     'use strict';
 
 
-
-
-    var bg_picture = $('#bg_picture');
-
-   // $(bg_picture).addClass('show');
-
-
-
-
-   
-
     element_click($('.loadimg'));
 
     element_click($('.user_link'));
