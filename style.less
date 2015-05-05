@@ -378,7 +378,6 @@ big {
 
 
 
-#skin_wrapper {
 
     input[type="checkbox"],
     input[type="radio"] {
@@ -506,7 +505,7 @@ big {
     }
 
 
-}
+
 
 svg {
     position: absolute;
@@ -561,7 +560,7 @@ svg {
     display: table;
     width: 100%;
     height: 100%;
-    background: #f8f8f8;
+    background: #eee;
     z-index: 2;
     position: relative;
 
@@ -675,25 +674,6 @@ svg {
 
 @a: 0.7s;
 
-
-.view-container.show {
-
-    visibility: visible;
-    background: rgba(0, 0, 0, 0.3);
-
-    -webkit-transition: background @a;
-    -moz-transition: background @a;
-    transition: background @a;
-}
-
-@tY: 0px;
-
-@tS: 0.9;
-
-@hD: 1s;
-
-@o: 0.2s; 
-
 .view-container {
     position: absolute;
     top: 0;
@@ -725,22 +705,41 @@ svg {
         display: none;
         margin-top: 4em;
         width: 80%;
-        box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
+        box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.5);
+        border-radius: 2px;
         background: #fff;
         padding: 2em;
         text-align: left;
         visibility: hidden;
 
-        @sY: -10px;
-        
-        
-        
+        @sY: 10px;
+        @sY2: 10px;
+
+        .list-container {
+            position: relative;
+            z-index: 3;
+
+            -webkit-transform: translateY(@sY2);
+            -moz-transform: translateY(@sY2);
+            -ms-transform: translateY(@sY2);
+            -o-transform: translateY(@sY2);
+            transform: translateY(@sY2);
+
+            opacity: 0;
+
+            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
+            -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
+            transition: transform 0.5s 0s, opacity 0.5s 0s;
+        }
+
 
         h2 {
             font-size: 2.0em;
             font-weight: 300;
-            padding-bottom: 1em;
             color: @primarycolor;
+
+            margin: 0;
+            padding-bottom: 0.6em;
 
             -webkit-transform: translateY(@sY);
             -moz-transform: translateY(@sY);
@@ -750,15 +749,16 @@ svg {
 
             opacity: 0;
 
-            -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
-            -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
-            transition: transform 0.5s @hD, opacity 0.5s @hD;
+            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
+            -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
+            transition: transform 0.5s 0s, opacity 0.5s 0s;
+
+
 
             .close-trigger {
                 position: absolute;
                 width: 30px;
                 height: 30px;
-                margin: 0.6em;
                 right: 0;
                 top: 0;
                 cursor: pointer;
@@ -827,8 +827,6 @@ svg {
 
 
         h4 {
-            opacity: 1;
-
             position: relative;
             padding: 0.6em 0em;
 
@@ -838,35 +836,16 @@ svg {
             border-bottom: 1px solid #eee;
             color: @primarycolor;
 
-            -webkit-transform: translateY(@tY) scale(@tS);
-            -moz-transform: translateY(@tY) scale(@tS);
-            -o-transform: translateY(@tY) scale(@tS);
-            -ms-transform: translateY(@tY) scale(@tS);
-            transform: translateY(@tY) scale(@tS);
-
-            transform-origin: 0 0;
-            -webkit-transition: -webkit-transform 0.5s, opacity @o;
-            -moz-transition: -moz-transform 0.5s, opacity @o;
-            transition: transform 0.5s, opacity @o;
+            a {
+                color: @primarycolor; 
+            }    
         }
 
         ul {
-
-            opacity: 1;
-
             position: relative;
             padding: 0 1.6em;
+            margin-left: 0.6em;
 
-            transform-origin: 0 0;
-            -webkit-transform: translateY(@tY) scale(@tS);
-            -moz-transform: translateY(@tY) scale(@tS);
-            -o-transform: translateY(@tY) scale(@tS);
-            -ms-transform: translateY(@tY) scale(@tS);
-            transform: translateY(@tY) scale(@tS);
-            -webkit-transition: -webkit-transform 0.5s, opacity @o;
-            -moz-transition: -moz-transform 0.5s, opacity @o;
-            transition: transform 0.5s, opacity @o;
-            list-style: none;
         }
 
 
@@ -875,11 +854,52 @@ svg {
 
     }
 
-    .widget_list.show {
+
+
+
+}
+
+@hD: 0s;
+
+.view-container.open-view {
+
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.3);
+
+    -webkit-transition: background @a;
+    -moz-transition: background @a;
+    transition: background @a;
+
+    svg {
+        opacity: 1;
+
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+
+        .circle-1 {
+            fill: #f7f7f7;
+            position: relative;
+            z-index: 1;
+
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+    }
+
+    .widget_list.open-view {
         visibility: visible;
         display: inline-block !important;
 
-        h2 {
+        h2.open-view-h2 {
             opacity: 1;
 
             -webkit-transform: translateY(0);
@@ -893,19 +913,27 @@ svg {
             transition: transform 0.5s @hD, opacity 0.5s @hD;
         }
 
-        ul {
+        .list-container.open-view {
             opacity: 1;
 
-            -webkit-transition: opacity @a 0.7s;
-            -moz-transition: opacity @a 0.7s;
-            transition: opacity @a 0.7s;
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            transform: translateY(0);
 
+            -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
+            -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
+            transition: transform 0.5s @hD, opacity 0.5s @hD;
         }
+
+
 
     }
 
-
 }
+
+
 
 
 
@@ -944,7 +972,7 @@ svg {
         display: block;
 
         min-width: 36%;
-        max-width: 40%;
+        max-width: 36%;
 
         margin: 0!important;
         position: relative;
@@ -953,7 +981,7 @@ svg {
         overflow: hidden;
         border-radius: 2px;
 
-        background: #fff;
+        background: @linkcolor;
 
 
         opacity: 0;
@@ -964,14 +992,14 @@ svg {
         transition: box-shadow 0.5s;
 
         /*box-shadow: 0px 2px 1px -1px rgba(174, 174, 174, 0.6);*/
-        box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 5px 0px rgba(0,0,0,.4);
 
         >h2 {
             font-weight: 300;
-            font-size: 1.3em;
+            font-size: 1.2em;
             /*background: #fff;*/
             color: @primarycolor;
-            padding: 1em 1.4em;
+            padding: 1.1em 1.4em;
             margin: 0;
             cursor: pointer;
             position: relative;
@@ -1303,17 +1331,6 @@ body .main .widget--social-media-links {
     .widget_plugin_evo_Calr {
         text-align: left;
 
-        .bCalendarTable {
-            box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
-            padding: 2em;
-            background: @cardcolor;
-            display: inline-block;
-        }
-
-        table.bCalendarTable caption a {
-            color: @primarycolor !important;
-        }
-
     }
 
 
@@ -1373,7 +1390,10 @@ body .main .widget--social-media-links {
 .widget_plugin_evo_Calr {
 
     table.bCalendarTable {
-
+        box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
+        padding: 2em;
+        background: @cardcolor;
+        display: inline-block;
         th, th {
             border-bottom: 1px solid @divider;
         }
@@ -1383,6 +1403,11 @@ body .main .widget--social-media-links {
             font-weight: 300;
             padding: 0;
             color: @primarycolor;
+
+            a {
+                color: @primarycolor !important;
+            }
+
         }
 
         thead {
@@ -1499,7 +1524,7 @@ body .main .widget--social-media-links {
 /* Search Widget */ 
 
 
-.main .widget_core_coll_search_form {
+.widget_core_coll_search_form {
     padding: 4em;
     background: #F7F7F7;
     box-shadow: 0 2px 5px -1px rgba(0,0,0,.6);
@@ -1509,7 +1534,7 @@ body .main .widget--social-media-links {
     @htY2: 30px;
     @hts: 0.3s;
 
-    h2.page-header {
+    h2 {
         background: 0 0!important;
         color: @primarycolor !important;
         box-shadow: 0 0 0!important;
@@ -1536,7 +1561,7 @@ body .main .widget--social-media-links {
 
 
 
-    h2.page-header.label-hide {
+    h2.label-hide {
 
         font-size: 1.0em !important;
 

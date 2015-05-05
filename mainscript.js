@@ -39,33 +39,35 @@
         });
 
     }
-    
-    
- 
+
+
+
 
 
     /* Create circle in svg to its parent */
 
-    function create_svg(e, c, x, y) {
-        
-        
+    function create_svg(e, c, x, y, d) {
+
+
 
         var box = $(e);
 
         var setX = parseInt(c.pageX - $(e).offset().left);
         var setY = parseInt(c.pageY - $(e).offset().top);
         var radius = $(box).outerWidth() / 2;
-        
+
         var radiusMax = Math.max(parseInt($(box).outerWidth()), parseInt($(box).outerHeight()));
-        
-        
-        
-        if( x !== null || y !== null ) {
+
+
+
+        if (x > 0 || y > 0) {
             setX = x;
             setY = y;
-            
         }
-        
+        if (d < 1) {
+            d = 350;
+        }
+
         var start_r = radiusMax * 0.4;
 
         /* Create circle */
@@ -74,7 +76,7 @@
         }
 
         $(box).find('svg').css('opacity', '0.2');
-        $(box).find('svg').animate({opacity: '0.8'}, {duration: 200, queue: false});
+        $(box).find('svg').animate({opacity: '1'}, {duration: 200, queue: false});
         var c1 = $(box).find(".circle-1");
 
         c1.attr('cx', setX);
@@ -84,7 +86,7 @@
 
         /* Start animation of circle */
 
-        $(c1).animate({"r": radiusMax}, {duration: 350,
+        $(c1).animate({"r": radiusMax}, {duration: d,
             step: function(val) {
                 c1.attr("r", (val + start_r));
             }
@@ -158,20 +160,20 @@
 
     /* Search widget label animation */
 
-    $('.main .widget_core_coll_search_form').ready(function() {
+    $('.widget_core_coll_search_form').ready(function() {
 
-        $('.main .widget_core_coll_search_form form input[type=text]').focusin(function() {
-            $('.main .widget_core_coll_search_form h2.page-header').addClass('label-hide');
+        $('.widget_core_coll_search_form form input[type=text]').focusin(function() {
+            $('.widget_core_coll_search_form h2').addClass('label-hide');
         });
 
-        if ($('.main .widget_core_coll_search_form form input[type=text]').val().length < 1) {
-            $('.main .widget_core_coll_search_form h2.page-header').removeClass('label-hide');
+        if ($('.widget_core_coll_search_form form input[type=text]').val().length < 1) {
+            $('.widget_core_coll_search_form h2').removeClass('label-hide');
         }
 
-        $('.main .widget_core_coll_search_form form input[type=text]').focusout(function() {
+        $('.widget_core_coll_search_form form input[type=text]').focusout(function() {
 
             if ($(this).val().length < 1) {
-                $('.main .widget_core_coll_search_form h2.page-header').removeClass('label-hide');
+                $('.widget_core_coll_search_form h2').removeClass('label-hide');
             }
         });
 
@@ -199,6 +201,13 @@
             var widget_list_view = $(widget_list).clone();
 
             $(widget_list_view).find('h2').append('<span class="close-trigger"></span>');
+
+            var list_content = $(widget_list_view).children().detach();
+            $(widget_list_view).append('<div class="list-container content"></div>');
+
+            $(widget_list_view).find('.list-container').append(list_content);
+
+
 
 
             $(view_container).children('.container').append(widget_list_view);
@@ -274,7 +283,7 @@
             hide_svg(e, c);
 
             // create_svg(view_container, c);
-            $(view_container).addClass('show');
+            $(view_container).addClass('open-view');
 
 
 
@@ -284,7 +293,9 @@
 
             var widget_list_view = $(view_container).children().children().eq(view_index);
 
-            $(widget_list_view).addClass('show');
+            $(widget_list_view).addClass('open-view');
+
+
 
             var startWidth = $(widget_list_view).outerWidth() * 0.8;
             var endWidth = $(widget_list_view).outerWidth();
@@ -293,26 +304,35 @@
 
             $(widget_list_view).css({
                 width: startWidth
-            }).animate({
-                width: endWidth
-            }, {
-                duration: 700,
-                queue: false,
-                complete: function() {
-                    var x = $(widget_list_view).outerWidth() / 2;
-                    var y = $(widget_list_view).outerHeight() / 2;
-                    
-                    create_svg(widget_list_view, c, x, y);
-                    
-                    setTimeout(function() {
-                        hide_svg(widget_list_view, c);
-                        setTimeout(function() {
-                            $(widget_list_view).find('svg').detach();
-                        }, 200);
-                    }, 300);
-                }
             });
+            setTimeout(function() {
 
+
+                $(widget_list_view).animate({
+                    width: endWidth
+                }, {
+                    duration: 300,
+                    queue: false,
+                    ease: 'ease-in-out',
+                    complete: function() {
+                        var x = $(widget_list_view).outerWidth() / 2;
+                        var y = $(widget_list_view).outerHeight() / 2;
+
+                        create_svg(widget_list_view, c, x, y, 1000);
+
+                        setTimeout(function() {
+                            $(widget_list_view).find('.list-container').addClass('open-view');
+                            setTimeout(function() {
+                                $(widget_list_view).find('h2').addClass('open-view-h2');
+                            }, 10);
+                        }, 200);
+
+                       
+                    }
+                });
+                
+                
+            }, 500);
 
 
             current_list = $(widget_list_view);
@@ -326,9 +346,12 @@
     /* Close list in popover view */
 
     $(close_trigger).on("click", function(c) {
-        $(view_container).removeClass('show');
+        $(view_container).removeClass('open-view');
 
-        $(current_list).removeClass('show');
+        $(current_list).removeClass('open-view');
+
+        $(current_list).children().removeClass('open-view');
+        $(current_list).children().children().removeClass('open-view-h2');
 
         console.log('close');
     });
