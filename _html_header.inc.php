@@ -105,6 +105,8 @@ require $skins_path.'_toolbar.inc.php';
 // ------------------------------- END OF TOOLBAR --------------------------------
 
 
+echo '<div class="view-container"><div class="container content main"></div></div>';
+
 echo "\n";
 if( show_toolbar() )
 {

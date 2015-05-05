@@ -8,6 +8,8 @@
 
     element_click($('.profile_buttons .btn'));
 
+    element_click($('.widget_core_coll_common_links ul li strong a'));
+
 
     /* Click events setup */
 
@@ -185,17 +187,21 @@
 
     var view_container = $('.view-container');
 
-    $('.main .front_main_area .widget').each(function(e) {
+    $('.main .front_main_area .widget[class$="list"]').each(function(e) {
 
-        if ($(this).hasClass('widget_core_coll_category_list') ||
+       /* if ($(this).hasClass('widget_core_coll_category_list') ||
                 $(this).hasClass('widget_core_coll_link_list') ||
                 $(this).hasClass('widget_core_coll_comment_list')) {
+            
+            */
+           
 
             var widget_list = $(this);
 
 
-
             $(widget_list).addClass('widget_list');
+
+            $(widget_list).attr('data-index', e);
 
 
             var widget_list_view = $(widget_list).clone();
@@ -208,64 +214,48 @@
             $(widget_list_view).find('.list-container').append(list_content);
 
 
-
-
             $(view_container).children('.container').append(widget_list_view);
 
             $(view_container).css('height', $('body').outerHeight());
 
 
 
-            $(widget_list).find('h2').append('<span class="list-icon"><i class="fa fa-angle-down"></i></span>');
 
 
+            $(widget_list).find('h2').append('<span class="list-icon"><i class="fa fa-angle-right"></i></span>');
 
-
-            if ($(widget_list).parent().find('.widget_lists_container').size() < 1) {
-
-                $(widget_list).parent().append('<div class="widget_lists_container widget"></div>');
-            }
+            
 
             $(widget_list).find('h4').detach();
             $(widget_list).find('ul').detach();
 
             $(widget_list).addClass('animate');
 
-            $('.widget_lists_container').append($(widget_list).detach());
+            
 
-
-
-
-
+            /* 
             var pTop = $(widget_list).parent().offset().top;
             var mTop = $(widget_list).offset().top - pTop;
 
             var pLeft = $(widget_list).parent().offset().left;
             var mLeft = $(widget_list).offset().left - pLeft;
 
+          $(widget_list).css({'top': mTop + 'px', 'left': mLeft + 'px'});
+            setTimeout(function() {$(widget_list).css({'position': 'absolute'}); }, 200);*/
 
-            $(widget_list).css({
-                'top': mTop + 'px',
-                'left': mLeft + 'px'
-            });
 
-            setTimeout(function() {
-                $(widget_list).css({
-                    'position': 'absolute'
-                });
-            }, 200);
-
-        }
+        
 
     });
 
 
-    var list_title = $('.main .widget_lists_container .widget_list h2');
+    var list_title = $('.main .front_main_area .widget_list h2');
 
     var close_trigger = $('.close-trigger');
 
     var current_list;
 
+    //var list_title = $('.main .front_main_area .widget[class$="list"] h2');
 
     /* Open list in a popover view */
 
@@ -278,6 +268,7 @@
 
         $(e).addClass('shadow');
 
+        $("html, body").animate({ scrollTop: 0 }, 300);
 
         setTimeout(function() {
             hide_svg(e, c);
@@ -287,26 +278,35 @@
 
 
 
-            var view_index = $(e).parent().index();
+            var view_index = parseInt( $(e).parent().attr('data-index') );
 
-            console.log('view index:' + view_index);
+            console.log('data view index:' + view_index);
 
             var widget_list_view = $(view_container).children().children().eq(view_index);
 
             $(widget_list_view).addClass('open-view');
 
-
+            $(widget_list_view).css('width', '');
 
             var startWidth = $(widget_list_view).outerWidth() * 0.8;
             var endWidth = $(widget_list_view).outerWidth();
+            
+            var windowWidth = $(window).outerWidth();
 
+            console.log(' windowWidth: '+ windowWidth );
+
+            if ( windowWidth < 1000 ) {
+                
+                startWidth = '80%';
+                
+                endWidth = '100%';
+            }
 
 
             $(widget_list_view).css({
                 width: startWidth
             });
             setTimeout(function() {
-
 
                 $(widget_list_view).animate({
                     width: endWidth
@@ -334,10 +334,7 @@
                 
             }, 500);
 
-
             current_list = $(widget_list_view);
-
-            //$(widget_list_view).css({'max-height': '7000px'});
 
         }, 200);
 
