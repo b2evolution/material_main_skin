@@ -2,7 +2,13 @@
     'use strict';
 
 
-    element_click($('.loadimg'));
+    element_click($('.widget_core_coll_media_index .loadimg'));
+    
+    element_click($('.widget_core_org_members .loadimg'));
+    
+    element_click($('.widget_core_coll_avatar .loadimg'));
+    
+    
 
     element_click($('.user_link'));
 
@@ -107,26 +113,37 @@
 
 
 
-    /* Creating 3 columns (Info section) in secondary area with description, calendar and profile link widgets */
+    /* Creating 3 columns (Info section) in secondary area */
 
     $('.main.footer').ready(function() {
+        
+        
+        var widgets = [
+            '.widget_core_coll_longdesc',
+            '.widget_plugin_evo_Calr',
+            '.widget_core_profile_menu_link',
+            '.widget_core_coll_avatar',
+            '.widget_core_coll_tag_cloud',
+            '.widget_core_user_login',
+            '.widget_core_coll_xml_feeds',
+            '.widget_core_content_hierarchy',
+            '.widget_plugin_evo_WhosOnline',
+            '.widget_core_online_users',
+            '.widget_core_user_avatars'
+        ];
+        
 
         var secondary = $('.main.footer .col-md-12:first-child');
 
-        var evo_Calr = $(secondary).find('.widget_plugin_evo_Calr');
-
-        var longdesc = $(secondary).find('.widget_core_coll_longdesc');
-
-        var menu_link = $(secondary).find('.widget_core_profile_menu_link');
 
         if ($(secondary).find('.info_section').size() < 1) {
             $(secondary).prepend('<div class="info_section"></div>');
         }
 
-        $('.info_section').append($(menu_link).detach());
-        $('.info_section').append($(longdesc).detach());
-        $('.info_section').append($(evo_Calr).detach());
-
+        for( var i = 0; i<widgets.length; i++){
+            
+            $('.info_section').append($(secondary).find(widgets[i]).detach());
+        }
 
     });
 
@@ -185,11 +202,9 @@
 
         var widget_list = $(this);
 
-
         $(widget_list).addClass('widget_list');
 
         $(widget_list).attr('data-index', e);
-
 
         var widget_list_view = $(widget_list).clone();
 
@@ -200,38 +215,16 @@
 
         $(widget_list_view).find('.list-container').append(list_content);
 
-
         $(view_container).children('.container').append(widget_list_view);
 
         $(view_container).css('height', $('body').outerHeight());
 
-
-
-
-
         $(widget_list).find('h2').append('<span class="list-icon"><i class="fa fa-angle-right"></i></span>');
-
-
 
         $(widget_list).find('h4').detach();
         $(widget_list).find('ul').detach();
 
         $(widget_list).addClass('animate');
-
-
-
-        /* 
-         var pTop = $(widget_list).parent().offset().top;
-         var mTop = $(widget_list).offset().top - pTop;
-         
-         var pLeft = $(widget_list).parent().offset().left;
-         var mLeft = $(widget_list).offset().left - pLeft;
-         
-         $(widget_list).css({'top': mTop + 'px', 'left': mLeft + 'px'});
-         setTimeout(function() {$(widget_list).css({'position': 'absolute'}); }, 200);*/
-
-
-
 
     });
 
@@ -242,9 +235,7 @@
 
     var current_list;
 
-    //var list_title = $('.main .front_main_area .widget[class$="list"] h2');
-
-    /* Open list in a popover view */
+    /* Open list in a view container */
 
     $(list_title).on("click", function(c) {
 
@@ -260,18 +251,17 @@
         setTimeout(function() {
             hide_svg(e, c);
 
-            // create_svg(view_container, c);
-            $(view_container).addClass('open-view');
-
-
+            setTimeout(function() {
+                $(view_container).addClass('open-view');
+            }, 10);
 
             var view_index = parseInt($(e).parent().attr('data-index'));
 
-            console.log('data view index:' + view_index);
-
             var widget_list_view = $(view_container).children().children().eq(view_index);
 
-            $(widget_list_view).addClass('open-view-widget');
+            setTimeout(function() {
+                $(widget_list_view).addClass('open-view-widget');
+            }, 20);
 
             $(widget_list_view).css('width', '');
 
@@ -280,15 +270,10 @@
 
             var windowWidth = $(window).outerWidth();
 
-            console.log(' windowWidth: ' + windowWidth);
-
             if (windowWidth < 1000) {
-
                 startWidth = '80%';
-
                 endWidth = '100%';
             }
-
 
             $(widget_list_view).css({
                 width: startWidth
@@ -296,7 +281,12 @@
             setTimeout(function() {
 
                 $(widget_list_view).animate({
-                    width: endWidth
+                    width: endWidth,
+                    '-webkit-transform': 'scale(1)',
+                    '-moz-transform': 'scale(1)',
+                    '-ms-transform': 'scale(1)',
+                    '-o-transform': 'scale(1)',
+                    'transform': 'scale(1)'
                 }, {
                     duration: 300,
                     queue: false,
@@ -330,7 +320,6 @@
     /* Close list in popover view */
 
     $(close_trigger).on("click", function(c) {
-        
 
         $(current_list).children().children().removeClass('open-view-h2');
         $(current_list).children().removeClass('open-view');
@@ -338,26 +327,11 @@
         setTimeout(function() {
             $(current_list).removeClass('open-view-widget');
 
-           
-            
             $(view_container).removeClass('open-view');
-            
+
         }, 300);
 
-
-
-
-        console.log('close');
     });
-
-
-
-
-
-
-
-
-
 
 
 
