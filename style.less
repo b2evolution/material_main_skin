@@ -11,6 +11,8 @@
 
 @cardcolor: #F7F7F7;
 
+@defaultlink: #337ab7;
+
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
@@ -500,22 +502,27 @@ big {
 
 /* Alert Message */
 
-.alert-dismissable .close, .alert-dismissible .close {
-    position: relative;
-    top: 0;
-    right: -28px;
-    color: inherit;
-    display: block;
-    margin: 0;
-    background: 0 0;
-    font-size: 1.6em;
-    line-height: 0;
-}
-
-.alert-success {
+.alert {
     border: 0;
     border-radius: 0;
     color: #222;
+    .close {
+        position: relative;
+        top: 0;
+        right: -28px;
+        color: inherit;
+        display: block;
+        margin: 0;
+        background: 0 0;
+        font-size: 1.6em;
+        line-height: 0;
+    }
+    a {
+        color: @defaultlink!important;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
 }
 
 
@@ -612,6 +619,21 @@ svg {
                     height: 100%;
                     position: relative;
 
+
+                    .column-left {
+                        width: 50%;
+                        display: inline-block;
+                        padding-right: 2em;
+                        float: left;
+                    }
+                    .column-right {
+                        width: 50%;
+                        display: inline-block;
+                        float: left;
+                        padding: 0;
+                        padding-left: 3em;
+                    }
+
                     /* Front Main Widget Aligns */
 
                     .widget {
@@ -619,9 +641,16 @@ svg {
                         clear: both;
                         margin: 0;
                         margin-bottom: 2em;
+                        width: 100%;
                     }
 
 
+
+                    /* .widget:nth-child(4n),
+                     .widget:nth-child(5n),
+                     .widget:nth-child(6n){
+                         float: right;
+                     }*/
 
 
                 } 
@@ -681,6 +710,7 @@ svg {
     right: 0;
     bottom: 0;
     width: 100%;
+    height: 0;
     z-index: 1000;
     padding-top: 4em;
     text-align: center;
@@ -998,7 +1028,6 @@ svg {
         display: block;
 
         min-width: 36%;
-        max-width: 36%;
 
         margin: 0!important;
         position: relative;
@@ -1053,14 +1082,14 @@ svg {
     }
 
 
-    .widget_list.animate {
+    .widget_list.visible {
 
         visibility: visible;
         opacity: 1;
 
-        -webkit-transition: box-shadow 0.5s, visibility 0s 1s, opacity 1.5s 1s;
-        -moz-transition: box-shadow 0.5s, visibility 0s 1s, opacity 1.5s 1s;
-        transition: box-shadow 0.5s, visibility 0s 1s, opacity 1.5s 1s;
+        -webkit-transition: box-shadow 0.5s, visibility 0s 0.5s, opacity 0s 0.5s;
+        -moz-transition: box-shadow 0.5s, visibility 0s 0.5s, opacity 0s 0.5s;
+        transition: box-shadow 0.5s, visibility 0s 0.5s, opacity 0s 0.5s;
     }
 
 
@@ -1170,7 +1199,7 @@ svg {
 /* Widget Title Widget */
 
 .widget_core_coll_title {
-    h2 {
+    h1, h2 {
         font-size: 2.2em;
         margin: 0;
     }
@@ -1178,8 +1207,8 @@ svg {
 
 /* Widget Tagline Widget */
 
-.widget_core_coll_tagline {
-    margin-top:  -0.8em !important;
+.disp_front .widget_core_coll_tagline {
+    margin-top:  -1.8em !important;
 }
 
 
@@ -1286,7 +1315,7 @@ svg {
 
     h2 {
         color: @primarycolor;
-        margin: 0em 0 0.4em;
+        margin: -0.5em 0 .4em;
         font-size: 1.8em;
         line-height: 1.6em;
     }
@@ -1415,12 +1444,14 @@ svg {
 
 /* Social Icons */
 
-body .main .widget--social-media-links {
-    text-align: right;
+body .main .ufld_icon_links {
+    text-align: left;
 
     @ts: all 0.1s;
 
-    a[class*="ufld--bg"] {
+    @iconcolor: #fff;
+
+    a[class*="ufld__bgcolor"] {
 
         @tsbg: all 0.3s;
 
@@ -1451,7 +1482,7 @@ body .main .widget--social-media-links {
         }
     }
 
-    a[class*="ufld--hovertext"] {
+    a[class*="ufld__hovertext"] {
         background: transparent !important;
         -webkit-transition: all 0s;
         -moz-transition: all 0s;
@@ -1467,10 +1498,10 @@ body .main .widget--social-media-links {
             transition: @ts;
         }
     }
-    a[class*="ufld--hoverbg"]{
+    a[class*="ufld__hoverbgcolor"]{
         span {
             border-radius: 50%;
-            color: @textcolor;
+            color: @iconcolor;
 
             -webkit-transition: @ts;
             -moz-transition: @ts;
@@ -1496,7 +1527,7 @@ body .main .widget--social-media-links {
     a:hover {
         border-radius: 50%;
         background: rgba(0, 0, 0, 0.0);
-        color: @textcolor;
+        color: @iconcolor;
         -webkit-transition: background 0.2s;
         -moz-transition: background 0.2s;
         transition: background 0.2s;
@@ -1737,7 +1768,7 @@ body .main .widget--social-media-links {
     @htY2: -45px;
     @hts: 0.3s;
 
-    h2 {
+    h1, h2 {
         background: 0 0!important;
         color: @primarycolor !important;
         box-shadow: 0 0 0!important;
@@ -1765,7 +1796,7 @@ body .main .widget--social-media-links {
 
     }
 
-    h2.label-hide {
+    h2.label-hide, h1.label-hide {
 
         font-size: 1.0em !important;
 
@@ -1838,55 +1869,6 @@ body .main .widget--social-media-links {
 
 
 
-
-
-/* Form */
-
-
-.container .row .col-md-12 {
-
-
-    form {
-        position: relative;
-
-
-        label {
-            font-size: 1.1em!important;
-            line-height: 1.1em!important;
-            font-weight: 400;
-            z-index: 2;
-            padding: 0;
-            margin-top: 0.6em;
-            width: 100% !important;
-
-        }
-        input {
-            padding: .8em .4em;
-            margin-bottom: 0.4em;
-        }
-
-    }
-
-    .panel-default {
-        background: transparent;
-
-        input {
-            font-size: 1.0em;
-            margin: 0;
-            color: @primarycolor !important;
-        }
-        input:hover {
-            background: #E5E5E5;
-        }
-    }
-
-}
-
-
-
-
-
-
 /* User Page */
 
 .content.col-md-9 {
@@ -1894,21 +1876,6 @@ body .main .widget--social-media-links {
         display: none;
     }
 }
-
-#skin_wrapper {
-
-    .pageHeader {
-
-        h1 {
-            margin: 1em 0 0.4em;
-            font-size: 1.8em;
-            font-weight: 300;
-        }
-
-    }
-
-}
-
 
 
 #skin_wrapper .profile_column_left {
@@ -2308,13 +2275,10 @@ body .main .widget--social-media-links {
         vertical-align: top;
 
         h2 {
-            padding: 0 0 0.6em;
-            margin: 0 !important;
-            color: @primarycolor;
-            box-shadow: 0 0 0;
-            margin: 0;
-            border: 0;
-            background: transparent !important;
+            padding: 0.6em 1em;
+            margin: 0!important;
+            margin-bottom: 0.4em!important;
+            font-size: 1.4em;
         }
 
     }
@@ -2506,7 +2470,7 @@ body .main .widget--social-media-links {
             position: relative;
         }
 
-        .widget--social-media-links {
+        .ufld_icon_links {
             text-align: left;
             margin: 0;
             margin-top: 8px;

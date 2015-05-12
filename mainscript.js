@@ -3,12 +3,12 @@
 
 
     element_click($('.widget_core_coll_media_index .loadimg'));
-    
+
     element_click($('.widget_core_org_members .loadimg'));
-    
+
     element_click($('.widget_core_coll_avatar .loadimg'));
-    
-    
+
+
 
     element_click($('.user_link'));
 
@@ -25,9 +25,7 @@
 
         $(element).on("mousedown", function(c) {
             var e = $(this).parent();
-
             create_svg(e, c);
-
         });
 
         $(element).on("mouseup", function(c) {
@@ -113,11 +111,85 @@
 
 
 
+
+
+    /* Main Area Widget Aligns */
+
+    var main_area = $('.front_main_content');
+
+    $(main_area).ready(function(){
+       
+        var left = [
+          'widget_core_coll_avatar',
+          'widget_core_coll_title',
+          'widget_core_coll_tagline',
+          'widget_core_user_links',
+          'widget_plugin_evo_Calr',
+          'widget_core_coll_common_links',
+          'widget_core_coll_search_form',
+          'widget_core_breadcrumb_path',
+          'widget_plugin_evo_facebook',
+            
+          'widget_core_free_html',
+          'widget_core_user_login',
+          'widget_core_user_tools',
+          'widget_core_content_hierarchy',
+          'widget_core_coll_longdesc',
+          'widget_core_msg_menu_link',
+          'widget_core_menu_link',
+          'widget_core_coll_current_filters'
+        ];
+        
+        var right = [
+        'widget_core_coll_category_list',
+        'widget_core_coll_post_list',
+        'widget_core_coll_link_list',
+        'widget_core_coll_comment_list',
+        'widget_core_coll_post_list',
+            
+        'widget_core_coll_tag_cloud',
+        'widget_core_coll_xml_feeds',
+        'widget_plugin_evo_Arch',
+        'widget_plugin_evo_WhosOnline',
+        'widget_core_colls_list_public',
+        'widget_core_colls_list_owner',   
+        'widget_core_linkblog'
+        ];
+        
+        
+        $(main_area).prepend('<div class="column-left"></div><div class="column-right"></div>');
+        
+        
+        
+        $(main_area).find('.widget').each(function(){
+            
+            for(var i = 0; i<left.length; i++ ){
+                if( $(this).hasClass(left[i]) ) {
+                    $('.column-left').append($(this).detach());
+                }
+            }
+            for(var j = 0; j<right.length; j++ ){
+                if( $(this).hasClass(right[j]) ) {
+                    $('.column-right').append($(this).detach());
+                }
+            }
+            
+        });
+        
+    });
+
+
+
+
+
+
+
+
     /* Creating 3 columns (Info section) in secondary area */
 
     $('.main.footer').ready(function() {
-        
-        
+
+
         var widgets = [
             '.widget_core_coll_longdesc',
             '.widget_plugin_evo_Calr',
@@ -129,9 +201,27 @@
             '.widget_core_content_hierarchy',
             '.widget_plugin_evo_WhosOnline',
             '.widget_core_online_users',
-            '.widget_core_user_avatars'
+            '.widget_core_user_avatars',
+            
+            
+        /*'.widget_core_coll_category_list',
+        '.widget_core_coll_post_list',
+        '.widget_core_coll_link_list',
+        '.widget_core_coll_comment_list',
+        '.widget_core_coll_post_list',*/
+            
+        '.widget_core_coll_tag_cloud',
+        '.widget_core_coll_xml_feeds',
+        '.widget_plugin_evo_Arch',
+        '.widget_plugin_evo_WhosOnline',
+        '.widget_core_colls_list_public',
+        '.widget_core_colls_list_owner',   
+        '.widget_core_linkblog'
         ];
         
+        
+      
+
 
         var secondary = $('.main.footer .col-md-12:first-child');
 
@@ -140,8 +230,8 @@
             $(secondary).prepend('<div class="info_section"></div>');
         }
 
-        for( var i = 0; i<widgets.length; i++){
-            
+        for (var i = 0; i < widgets.length; i++) {
+
             $('.info_section').append($(secondary).find(widgets[i]).detach());
         }
 
@@ -151,7 +241,7 @@
 
     /* Social Icons Setup */
 
-    $('.widget--social-media-links a').each(function() {
+    $('.ufld_icon_links a').each(function() {
 
         var mthis = $(this);
 
@@ -167,6 +257,8 @@
     /* Widget form label animation */
 
     label_animation('.widget_core_coll_search_form form input[type=text]', '.widget_core_coll_search_form h2');
+    
+    label_animation('.widget_core_coll_search_form form input[type=text]', '.widget_core_coll_search_form h1');
 
 
     function label_animation(input, label) {
@@ -217,14 +309,14 @@
 
         $(view_container).children('.container').append(widget_list_view);
 
-        $(view_container).css('height', $('body').outerHeight());
+
 
         $(widget_list).find('h2').append('<span class="list-icon"><i class="fa fa-angle-right"></i></span>');
 
         $(widget_list).find('h4').detach();
         $(widget_list).find('ul').detach();
 
-        $(widget_list).addClass('animate');
+        $(widget_list).addClass('visible');
 
     });
 
@@ -235,6 +327,8 @@
 
     var current_list;
 
+    var site_info = $('.footer.main .container .row .col-md-12:last-child');
+
     /* Open list in a view container */
 
     $(list_title).on("click", function(c) {
@@ -243,6 +337,23 @@
 
         create_svg(e, c);
 
+        var view_index = parseInt($(e).parent().attr('data-index'));
+
+        var widget_list_view = $(view_container).children().children().eq(view_index);
+
+        var bodyHeight = parseInt($('body').outerHeight());
+
+        var widgetHeight = parseInt($(widget_list_view).outerHeight()) + 200;
+
+        if (widgetHeight > bodyHeight) {
+
+            var bottom_space = widgetHeight - bodyHeight;
+
+            $(site_info).css('padding-top', bottom_space + 'px');
+
+        }
+        bodyHeight = parseInt($('body').outerHeight());
+        $(view_container).css('height', bodyHeight + 'px');
 
         $(e).addClass('shadow');
 
@@ -255,9 +366,7 @@
                 $(view_container).addClass('open-view');
             }, 10);
 
-            var view_index = parseInt($(e).parent().attr('data-index'));
 
-            var widget_list_view = $(view_container).children().children().eq(view_index);
 
             setTimeout(function() {
                 $(widget_list_view).addClass('open-view-widget');
@@ -324,6 +433,8 @@
         $(current_list).children().children().removeClass('open-view-h2');
         $(current_list).children().removeClass('open-view');
 
+        $(site_info).css('padding-top', '');
+
         setTimeout(function() {
             $(current_list).removeClass('open-view-widget');
 
@@ -332,12 +443,6 @@
         }, 300);
 
     });
-
-
-
-
-
-
 
 
 
