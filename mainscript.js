@@ -161,7 +161,7 @@
         
         
         
-        $(main_area).find('.widget').each(function(){
+        $(main_area).find('.evo_widget').each(function(){
             
             for(var i = 0; i<left.length; i++ ){
                 if( $(this).hasClass(left[i]) ) {
@@ -289,7 +289,7 @@
 
     var view_container = $('.view-container');
 
-    $('.main .front_main_area .widget[class$="list"]').each(function(e) {
+    $('.main .front_main_content .evo_widget[class$="list"]').each(function(e) {
 
         var widget_list = $(this);
 
@@ -320,7 +320,7 @@
     });
 
 
-    var list_title = $('.main .front_main_area .widget_list h2');
+    var list_title = $('.main .front_main_content .widget_list h2');
 
     var close_trigger = $('.close-trigger');
 

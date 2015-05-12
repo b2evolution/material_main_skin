@@ -58,7 +58,7 @@ class material_main_Skin extends Skin
 	 */
 	function get_api_version()
 	{
-		return 5;
+		return 6;
 	}
 
         

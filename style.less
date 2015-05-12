@@ -636,11 +636,11 @@ svg {
 
                     /* Front Main Widget Aligns */
 
-                    .widget {
+                    .evo_widget, .widget {
                         float: left;
                         clear: both;
                         margin: 0;
-                        margin-bottom: 2em;
+                        margin-bottom: 1em;
                         width: 100%;
                     }
 
@@ -674,6 +674,18 @@ svg {
 
 }
 
+
+.pageHeader {
+
+    .evo_widget, .widget {
+        float: left;
+        clear: both;
+        margin: 0;
+        margin-bottom: 1em;
+        width: 100%;
+    }
+
+}
 
 
 .widget_core_coll_avatar {
@@ -1208,7 +1220,7 @@ svg {
 /* Widget Tagline Widget */
 
 .disp_front .widget_core_coll_tagline {
-    margin-top:  -1.8em !important;
+    margin-top:  -0.8em !important;
 }
 
 
@@ -1307,7 +1319,7 @@ svg {
     box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
     padding: 2em;
     background: @linkcolor;
-    display: inline-block;
+    display: block;
     margin-bottom: 1em!important;
     min-width: 40%;
 
@@ -1336,13 +1348,13 @@ svg {
         max-width: 100%;
     }
 
-    .widget {
+    .evo_widget {
         min-width: 45%;
     }
 
 }
 @media only screen and (max-width: 990px) {
-    .widget {
+    .evo_widget {
         min-width: 60%;
     }
 
@@ -1353,7 +1365,7 @@ svg {
 
 
 @media only screen and (max-width: 640px) {
-    .widget { 
+    .evo_widget { 
         width: 100%;
 
     }
@@ -1538,7 +1550,7 @@ body .main .ufld_icon_links {
 
 /* Widget Lists */
 
-.widget {
+.evo_widget, .widget {
 
     ul {
 
@@ -2236,7 +2248,8 @@ body .main .ufld_icon_links {
         max-width: 100%;
         width: 100%;
         vertical-align: top;
-        
+        margin-bottom: 2em;
+
         h2 {
             margin: 0 0 1em;
             border: 0;
@@ -2281,7 +2294,7 @@ body .main .ufld_icon_links {
             border: 0;
             background: transparent !important;
             font-size: 1.6em;
-              
+
             /* 
                padding: 0.6em 1em;
             margin: 0!important;
@@ -3101,7 +3114,7 @@ div.front_main_area {
     }
 
     // Widgets need to be spaced
-    div.widget {
+    div.evo_widget {
         margin: 0px 0;
     }
 
