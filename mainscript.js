@@ -191,7 +191,6 @@
 
 
         var widgets = [
-            '.widget_core_coll_longdesc',
             '.widget_plugin_evo_Calr',
             '.widget_core_profile_menu_link',
             '.widget_core_coll_avatar',
@@ -224,15 +223,15 @@
 
 
         var secondary = $('.main.footer .col-md-12:first-child');
+        var main_footer = $('.main.footer');
 
-
-        if ($(secondary).find('.info_section').size() < 1) {
-            $(secondary).prepend('<div class="info_section"></div>');
+        if ($(main_footer).find('.info_section').size() < 1) {
+            $(main_footer).prepend('<div class="info_section"><div class="container"></div></div>');
         }
 
         for (var i = 0; i < widgets.length; i++) {
 
-            $('.info_section').append($(secondary).find(widgets[i]).detach());
+            $('.info_section .container').append($(secondary).find(widgets[i]).detach());
         }
 
     });
