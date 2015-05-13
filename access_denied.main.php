@@ -13,9 +13,9 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
 
 global $app_version, $disp, $Blog;
 
-if( version_compare( $app_version, '5.0' ) < 0 )
+if( version_compare( $app_version, '6.4' ) < 0 )
 { // Older skins (versions 2.x and above) should work on newer b2evo versions, but newer skins may not work on older b2evo versions.
-	die( 'This skin is designed for b2evolution 5.0 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.' );
+	die( 'This skin is designed for b2evolution 6.4 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.' );
 }
 
 // This is the main template; it may be used to display very different things.
@@ -61,7 +61,7 @@ if( $is_pictured_page )
 	<div class="row">
 		<div class="col-md-12">
 
-<div class="PageTop">
+<div class="evo_container evo_container__page_top">
 	<?php
 		// ------------------------- "Page Top" CONTAINER EMBEDDED HERE --------------------------
 		// Display container and contents:
@@ -79,7 +79,7 @@ if( $is_pictured_page )
 	?>
 </div>
 
-<div class="pageHeader">
+<div class="evo_container evo_container__header">
 	<?php
 		// ------------------------- "Header" CONTAINER EMBEDDED HERE --------------------------
 		// Display container and contents:
@@ -137,7 +137,7 @@ if( $is_pictured_page )
 </div>
 
 <!-- =================================== START OF FOOTER =================================== -->
-<div class="footer">
+<div class="evo_container evo_container__footer">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 center">

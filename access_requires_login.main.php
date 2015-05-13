@@ -13,9 +13,9 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
 
 global $app_version, $disp, $Blog;
 
-if( version_compare( $app_version, '5.0' ) < 0 )
+if( version_compare( $app_version, '6.4' ) < 0 )
 { // Older skins (versions 2.x and above) should work on newer b2evo versions, but newer skins may not work on older b2evo versions.
-	die( 'This skin is designed for b2evolution 5.0 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.' );
+	die( 'This skin is designed for b2evolution 6.4 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.' );
 }
 
 
@@ -62,7 +62,7 @@ if( $is_pictured_page )
 	<div class="row">
 		<div class="col-md-12">
 
-<div class="PageTop">
+<div class="evo_container evo_container__page_top">
 	<?php
 		// ------------------------- "Page Top" CONTAINER EMBEDDED HERE --------------------------
 		// Display container and contents:
@@ -80,7 +80,7 @@ if( $is_pictured_page )
 	?>
 </div>
 
-<div class="pageHeader">
+<div class="evo_container evo_container__header">
 	<?php
 		// ------------------------- "Header" CONTAINER EMBEDDED HERE --------------------------
 		// Display container and contents:
@@ -115,13 +115,12 @@ if( $is_pictured_page )
 				// Login
 				'display_form_messages' => true,
 				'form_title_login'      => T_('Log in to your account').'$form_links$',
-				'form_class_login'      => 'wrap-form-login',
 				'form_title_lostpass'   => get_request_title().'$form_links$',
-				'form_class_lostpass'   => 'wrap-form-lostpass',
+				'lostpass_page_class'   => 'evo_panel__lostpass',
 				'login_form_inskin'     => false,
+				'login_page_class'      => 'evo_panel__login',
 				'login_page_before'     => '<div class="$form_class$">',
 				'login_page_after'      => '</div>',
-				'login_form_class'      => 'form-login',
 				'display_reg_link'      => true,
 				'abort_link_position'   => 'form_title',
 				'abort_link_text'       => '<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
@@ -139,7 +138,7 @@ if( $is_pictured_page )
 </div>
 
 <!-- =================================== START OF FOOTER =================================== -->
-<div class="footer">
+<div class="evo_container evo_container__footer">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 center">

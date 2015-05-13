@@ -14,13 +14,13 @@
  * @package evoskins
  * @subpackage bootstrap_main
  *
- * @version $Id: index.main.php 8793 2015-04-18 02:35:27Z fplanque $
+ * @version $Id: index.main.php 8907 2015-05-08 18:16:32Z fplanque $
  */
 if (!defined('EVO_MAIN_INIT'))
     die('Please, do not access this page directly.');
 
-if (version_compare($app_version, '5.0') < 0) { // Older skins (versions 2.x and above) should work on newer b2evo versions, but newer skins may not work on older b2evo versions.
-    die('This skin is designed for b2evolution 5.0 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.');
+if (version_compare($app_version, '6.4') < 0) { // Older skins (versions 2.x and above) should work on newer b2evo versions, but newer skins may not work on older b2evo versions.
+    die('This skin is designed for b2evolution 6.4 and above. Please <a href="http://b2evolution.net/downloads/index.html">upgrade your b2evolution</a>.');
 }
 
 // This is the main template; it may be used to display very different things.
@@ -62,16 +62,14 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
 ?>
 
 
-
-
-    <div class="container body content">
+    <div class="container main_page_wrapper content">
 
     <?php
     if ($disp != 'front') { // Don't display header on disp=front
         ?>
             <div class="row">
                 <div class="coll-xs-12 coll-sm-12 col-md-4 col-md-push-8">
-                    <div class="PageTop">
+                    <div class="evo_container evo_container__page_top">
             <?php
             // ------------------------- "Page Top" CONTAINER EMBEDDED HERE --------------------------
             // Display container and contents:
@@ -90,7 +88,7 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                     </div>
                 </div>
                 <div class="coll-xs-12 col-sm-12 col-md-8 col-md-pull-4">
-                    <div class="pageHeader">
+                    <div class="evo_container evo_container__header">
                         <?php
                         // ------------------------- "Header" CONTAINER EMBEDDED HERE --------------------------
                         // Display container and contents:
@@ -111,22 +109,22 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                     ?>
         <!-- =================================== START OF MAIN AREA =================================== -->
         <div class="row">
-            <div class="col-md-12 coll-xs-12 col-sm-12 <?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
+            <div class="col-md-12<?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
 
-        <?php
-        if (!in_array($disp, array('login', 'lostpassword', 'register', 'activateinfo'))) { // Don't display the messages here because they are displayed inside wrapper to have the same width as form
-            // ------------------------- MESSAGES GENERATED FROM ACTIONS -------------------------
-            messages(array(
-                'block_start' => '<div class="action_messages">',
-                'block_end' => '</div>',
-            ));
-            // --------------------------------- END OF MESSAGES ---------------------------------
-        }
+<?php
+if (!in_array($disp, array('login', 'lostpassword', 'register', 'activateinfo'))) { // Don't display the messages here because they are displayed inside wrapper to have the same width as form
+    // ------------------------- MESSAGES GENERATED FROM ACTIONS -------------------------
+    messages(array(
+        'block_start' => '<div class="action_messages">',
+        'block_end' => '</div>',
+    ));
+    // --------------------------------- END OF MESSAGES ---------------------------------
+}
 
-        if ($disp == 'front') { // Start of wrapper for front page area, in order to have the $Messages outside this block
-            echo '<div class="front_main_content">';
-        }
-        ?>
+if ($disp == 'front') { // Start of wrapper for front page area, in order to have the $Messages outside this block
+    echo '<div class="front_main_content">';
+}
+?>
 
                 <?php
                 // ------------------- PREV/NEXT POST LINKS (SINGLE POST MODE) -------------------
@@ -144,8 +142,8 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                 <?php
                 // ------------------------ TITLE FOR THE CURRENT REQUEST ------------------------
                 request_title(array(
-                    'title_before' => '<h4 class="title">',
-                    'title_after' => '</h4>',
+                    'title_before' => '<h2>',
+                    'title_after' => '</h2>',
                     'title_none' => '',
                     'glue' => ' - ',
                     'title_single_disp' => true,
@@ -170,7 +168,6 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                         'feature_block' => true,
                         'content_mode' => 'auto', // 'auto' will auto select depending on $disp-detail
                         'intro_mode' => 'normal', // Intro posts will be displayed in normal mode
-                        'item_class' => '',
                     ));
                     echo '</div></div>';
                     // ----------------------------END ITEM BLOCK  ----------------------------
@@ -200,34 +197,6 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                         // ---------------------- ITEM BLOCK INCLUDED HERE ------------------------
                         skin_include('_item_block.inc.php', array(
                             'content_mode' => 'auto', // 'auto' will auto select depending on $disp-detail
-                            // Comment template
-                            'comment_start' => '<div class="evoComment panel panel-default">',
-                            'comment_end' => '</div>',
-                            'comment_title_before' => '<div class="panel-heading"><h4 class="evoComment-title panel-title">',
-                            'comment_title_after' => '</h4></div><div class="panel-body">',
-                            'comment_avatar_before' => '<div class="evoComment-avatar">',
-                            'comment_avatar_after' => '</div>',
-                            'comment_rating_before' => '<div class="evoComment-rating">',
-                            'comment_rating_after' => '</div>',
-                            'comment_text_before' => '<div class="evoComment-text">',
-                            'comment_text_after' => '</div>',
-                            'comment_info_before' => '<div class="evoComment-info clear text-muted"><small>',
-                            'comment_info_after' => '</small></div></div>',
-                            'preview_start' => '<div class="panel panel-warning" id="comment_preview">',
-                            'preview_end' => '</div>',
-                            'comment_attach_info' => get_icon('help', 'imgtag', array(
-                                'data-toggle' => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'data-html' => 'true',
-                                'title' => htmlspecialchars(get_upload_restriction(array(
-                                    'block_after' => '',
-                                    'block_separator' => '<br /><br />')))
-                            )),
-                            // Comment form
-                            'form_title_start' => '<div class="panel ' . ( $Session->get('core.preview_Comment') ? 'panel-danger' : 'panel-default' )
-                            . ' comment_form"><div class="panel-heading"><h3>',
-                            'form_title_end' => '</h3></div>',
-                            'after_comment_form' => '</div>',
                         ));
                         // ----------------------------END ITEM BLOCK  ----------------------------
                     } // ---------------------------------- END OF POSTS ------------------------------------
@@ -255,8 +224,8 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                     'disp_posts' => '', // We already handled this case above
                     'disp_single' => '', // We already handled this case above
                     'disp_page' => '', // We already handled this case above
-                    'skin_form_params' => $Skin->get_template('Form'),
                     'author_link_text' => 'preferredname',
+                    // Profile tabs to switch between user edit forms
                     'profile_tabs' => array(
                         'block_start' => '<ul class="nav nav-tabs profile_tabs">',
                         'item_start' => '<li>',
@@ -265,6 +234,7 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                         'item_selected_end' => '</li>',
                         'block_end' => '</ul>',
                     ),
+                    // Pagination
                     'pagination' => array(
                         'block_start' => '<div class="center"><ul class="pagination">',
                         'block_end' => '</ul></div>',
@@ -284,61 +254,33 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
                     // Login
                     'display_form_messages' => true,
                     'form_title_login' => T_('Log in to your account') . '$form_links$',
-                    'form_class_login' => 'wrap-form-login',
                     'form_title_lostpass' => get_request_title() . '$form_links$',
-                    'form_class_lostpass' => 'wrap-form-lostpass',
+                    'lostpass_page_class' => 'evo_panel__lostpass',
                     'login_form_inskin' => false,
+                    'login_page_class' => 'evo_panel__login',
                     'login_page_before' => '<div class="$form_class$">',
                     'login_page_after' => '</div>',
-                    'login_form_class' => 'form-login',
                     'display_reg_link' => true,
                     'abort_link_position' => 'form_title',
                     'abort_link_text' => '<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
                     // Register
-                    'register_page_before' => '<div class="wrap-form-register">',
+                    'register_page_before' => '<div class="evo_panel__register">',
                     'register_page_after' => '</div>',
                     'register_form_title' => T_('Register'),
-                    'register_form_class' => 'form-register',
                     'register_links_attrs' => '',
                     'register_use_placeholders' => true,
                     'register_field_width' => 252,
-                    'register_disabled_page_before' => '<div class="wrap-form-register register-disabled">',
+                    'register_disabled_page_before' => '<div class="evo_panel__register register-disabled">',
                     'register_disabled_page_after' => '</div>',
                     // Activate form
                     'activate_form_title' => T_('Account activation'),
-                    'activate_page_before' => '<div class="wrap-form-activation">',
+                    'activate_page_before' => '<div class="evo_panel__activation">',
                     'activate_page_after' => '</div>',
-                    // Profile
-                    'profile_avatar_before' => '<div class="panel panel-default profile_avatar">',
-                    'profile_avatar_after' => '</div>',
                     // Search
                     'search_input_before' => '<div class="input-group">',
                     'search_input_after' => '',
                     'search_submit_before' => '<span class="input-group-btn">',
                     'search_submit_after' => '</span></div>',
-                    // Comment template
-                    'comment_start' => '<div class="evoComment panel panel-default">',
-                    'comment_end' => '</div>',
-                    'comment_post_before' => '<span class="panel-title in-response">',
-                    'comment_post_after' => '</span>',
-                    'comment_title_before' => '<div class="panel-heading">',
-                    'comment_title_after' => '<div class="clearfix"></div></div><div class="panel-body">',
-                    'comment_avatar_before' => '<div class="evoComment-avatar">',
-                    'comment_avatar_after' => '</div>',
-                    'comment_rating_before' => '<div class="evoComment-rating">',
-                    'comment_rating_after' => '</div>',
-                    'comment_text_before' => '<div class="evoComment-text">',
-                    'comment_text_after' => '</div>',
-                    'comment_info_before' => '<div class="evoComment-info clear text-muted"><small>',
-                    'comment_info_after' => '</small></div></div>',
-                    'comment_attach_info' => get_icon('help', 'imgtag', array(
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'bottom',
-                        'data-html' => 'true',
-                        'title' => htmlspecialchars(get_upload_restriction(array(
-                            'block_after' => '',
-                            'block_separator' => '<br /><br />')))
-                    )),
                     // Front page
                     'front_block_first_title_start' => '<h1>',
                     'front_block_first_title_end' => '</h1>',
@@ -360,19 +302,19 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
         </div>
     </div>
 
-</div>    
-
-<!-- End of skin_wrapper -->
+    <!-- End of skin_wrapper -->
 </div>
 
+
 <!-- =================================== START OF FOOTER =================================== -->
-<div class="footer main content">
+<div class="evo_container evo_container__footer main content">
     <div class="container">
         <div class="row">
                 <?php
                 if ($disp == 'front') {
                     ?>
                 <div class="col-md-12">
+                    <div class="evo_container evo_container__front_page_secondary">
     <?php
     // ------------------------- "Front Page Secondary Area" CONTAINER EMBEDDED HERE --------------------------
     // Display container and contents:
@@ -382,47 +324,33 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
         'block_end' => '</div>',
         'block_title_start' => '<h2 class="page-header">',
         'block_title_end' => '</h2>',
-            /* 'block_body_start' => '<div class="panel-collapse"><div class="panel-body">',
-              'block_body_end' => '</div></div>',
-
-              // If a widget displays a list, this will enclose that list:
-              'list_start' => '<ul>',
-              'list_end' => '</ul>',
-              // This will enclose each item in a list:
-              'item_start' => '<li>',
-              'item_end' => '</li>',
-              // This will enclose sub-lists in a list:
-              'group_start' => '<ul>',
-              'group_end' => '</ul>',
-              // This will enclose (foot)notes:
-              'notes_start' => '<div class="notes">',
-              'notes_end' => '</div>', */
     ));
     // ----------------------------- END OF "Front Page Secondary Area" CONTAINER -----------------------------
     ?>
+                    </div>
                 </div>
-                    <?php
-                }
-                ?>
+                <?php
+            }
+            ?>
             <div class="col-md-12 center">
-                <?php
-                // ------------------------- "Footer" CONTAINER EMBEDDED HERE --------------------------
-                // Display container and contents:
-                skin_container(NT_('Footer'), array(
-                        // The following params will be used as defaults for widgets included in this container:
-                ));
-                // ----------------------------- END OF "Footer" CONTAINER -----------------------------
-                ?>
+                    <?php
+                    // ------------------------- "Footer" CONTAINER EMBEDDED HERE --------------------------
+                    // Display container and contents:
+                    skin_container(NT_('Footer'), array(
+                            // The following params will be used as defaults for widgets included in this container:
+                    ));
+                    // ----------------------------- END OF "Footer" CONTAINER -----------------------------
+                    ?>
                 <p>
-                <?php
-                // Display footer text (text can be edited in Blog Settings):
-                $Blog->footer_text(array(
-                    'before' => '',
-                    'after' => ' &bull; ',
-                ));
+                    <?php
+                    // Display footer text (text can be edited in Blog Settings):
+                    $Blog->footer_text(array(
+                        'before' => '',
+                        'after' => ' &bull; ',
+                    ));
 
-                // TODO: dh> provide a default class for pTyp, too. Should be a name and not the ityp_ID though..?!
-                ?>
+                    // TODO: dh> provide a default class for pTyp, too. Should be a name and not the ityp_ID though..?!
+                    ?>
 
                 <?php
                 // Display a link to contact the owner of this blog (if owner accepts messages):
@@ -470,16 +398,14 @@ if ($is_pictured_page) { // Display a picture from skin setting as background im
     </div>
 </div>
 
-
-
-                <?php
+                    <?php
 // ---------------------------- SITE FOOTER INCLUDED HERE ----------------------------
 // If site footers are enabled, they will be included here:
-                siteskin_include('_site_body_footer.inc.php');
+                    siteskin_include('_site_body_footer.inc.php');
 // ------------------------------- END OF SITE FOOTER --------------------------------
 // ------------------------- HTML FOOTER INCLUDED HERE --------------------------
-                skin_include('_html_footer.inc.php');
+                    skin_include('_html_footer.inc.php');
 // Note: You can customize the default HTML footer by copying the
 // _html_footer.inc.php file into the current skin folder.
 // ------------------------------- END OF FOOTER --------------------------------
-                ?>
+                    ?>
