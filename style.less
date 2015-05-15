@@ -598,7 +598,7 @@ svg {
                 height: 100%;
                 padding-bottom: 3em;
             }
-            
+
             @y: 10px;
 
             .front_main_content {
@@ -615,11 +615,11 @@ svg {
                 -ms-transform: translateY(@y);
                 -o-transform: translateY(@y);
                 transform: translateY(@y);
-                
+
                 -webkit-transition: -webkit-transform 0.5s;
                 -moz-transition: -moz-transform 0.5s;
                 transition: transform 0.5s;
-                
+
                 .column-left {
                     width: 50%;
                     display: inline-block;
@@ -647,13 +647,13 @@ svg {
             } 
             .front_main_content.load {
                 opacity: 1;
-                
+
                 -webkit-transform: translateY(0);
                 -moz-transform: translateY(0);
                 -ms-transform: translateY(0);
                 -o-transform: translateY(0);
                 transform: translateY(0);
-                
+
                 -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
                 -moz-transition: -moz-transform 0.5s, opacity 0.5s;
                 transition: transform 0.5s, opacity 0.5s;
@@ -718,8 +718,8 @@ svg {
 
 /* View container for popup lists default/closed state */
 
-@a: 0.7s;
-@scale: 0.8;
+
+@vY: 30px;
 .view-container {
     position: absolute;
     top: 0;
@@ -731,29 +731,54 @@ svg {
     z-index: 1000;
     padding-top: 4em;
     text-align: center;
-    background: rgba(0, 0, 0, 0);
-
     visibility: hidden;
 
-    -webkit-transition: background @a;
-    -moz-transition: background @a;
-    transition: background @a;
+    -webkit-transition: visibility 0s 0.9s;
+    -moz-transition: visibility 0s 0.9s;
+    transition: visibility 0s 0.9s;
 
+    .view-background {
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        -webkit-transition: opacity @startV 0s;
+        -moz-transition: opacity @startV 0s;
+        transition: opacity @startV 0s;
+    }
 
     .container {
         height: 100%;
         position: relative;
         text-align: center;
         z-index: 2;
-        margin: 0;
-        display: inline-block;
     }
 
+    .widget-container {
+        display: inline-block;
+        width: 100%;
+        
+        opacity: 0;
+
+        -webkit-transform: translateY(@vY) translateZ(0);
+        -moz-transform: translateY(@vY) translateZ(0);
+        -ms-transform: translateY(@vY) translateZ(0);
+        -o-transform: translateY(@vY) translateZ(0);
+        transform: translateY(@vY) translateZ(0);
+
+        -webkit-transition: -webkit-transform @startV 0s, opacity 0.2s 0s;;
+        -moz-transition: -moz-transform @startV 0s, opacity 0.2s 0s;
+        transition: transform @startV 0s, opacity 0.2s 0s;
+    }
 
     .widget_list {
 
         position: relative;
-        display: none;
         margin-top: 4em;
         width: 80%;
         box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.5);
@@ -763,16 +788,12 @@ svg {
         text-align: left;
         visibility: hidden;
         opacity: 1;
+        overflow: hidden;
 
-        -webkit-transform: scale(@scale);
-        -moz-transform: scale(@scale);
-        -ms-transform: scale(@scale);
-        -o-transform: scale(@scale);
-        transform: scale(@scale);
 
-        -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
-        -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
-        transition: transform 0.5s 0s, opacity 0.5s 0s;
+        -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s, visibility 0s 2s;
+        -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s, visibility 0s 2s;
+        transition: transform 0.5s 0s, opacity 0.5s 0s, visibility 0s 2s;
 
         @sY: 10px;
         @sY2: 10px;
@@ -789,9 +810,9 @@ svg {
 
             opacity: 0;
 
-            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
-            -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
-            transition: transform 0.5s 0s, opacity 0.5s 0s;
+            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.3s 0s;
+            -moz-transition: -moz-transform 0.5s 0s, opacity 0.3s 0s;
+            transition: transform 0.5s 0s, opacity 0.3s 0s;
         }
 
 
@@ -807,9 +828,9 @@ svg {
             -o-transform: translateY(@sY);
             transform: translateY(@sY);
             opacity: 0;
-            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
-            -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
-            transition: transform 0.5s 0s, opacity 0.5s 0s;
+            -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.3s 0s;
+            -moz-transition: -moz-transform 0.5s 0s, opacity 0.3s 0s;
+            transition: transform 0.5s 0s, opacity 0.3s 0s;
 
 
 
@@ -913,56 +934,42 @@ svg {
 
 /* View container for popup list open-view state */
 
-@hD: 2s;
+
+
+@startV: 0.9s;
 
 .open-view .view-container {
-
     visibility: visible;
-    background: rgba(0, 0, 0, 0.3);
-
-    -webkit-transition: background @a;
-    -moz-transition: background @a;
-    transition: background @a;
-
+    
+    -webkit-transition: visibility 0s 0s;
+    -moz-transition: visibility 0s 0s;
+    transition: visibility 0s 0s;
 }
 
-
-.open-view .view-container svg {
+.open-view .view-background {
     opacity: 1;
-
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
-
-
+    -webkit-transition: opacity @startV 0s;
+    -moz-transition: opacity @startV 0s;
+    transition: opacity @startV 0s;
 }
 
-.open-view .view-container svg .circle-1 {
-    fill: #f7f7f7;
-    position: relative;
-    z-index: 1;
 
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
+.open-view .view-container .widget-container {
+    -webkit-transform: translateY(0) translateZ(0);
+    -moz-transform: translateY(0) translateZ(0);
+    -ms-transform: translateY(0) translateZ(0);
+    -o-transform: translateY(0) translateZ(0);
+    transform: translateY(0) translateZ(0);
+    
+    opacity: 1;
+    
+    -webkit-transition: -webkit-transform @startV 0s, opacity 0.5s 0s;
+    -moz-transition: -moz-transform @startV 0s, opacity 0.5s 0s;
+    transition: transform @startV 0s, opacity 0.5s 0s;
 }
 
 .open-view .view-container .widget_list.show-widget  {
     visibility: visible;
-    display: inline-block !important;
-
-    -webkit-transform: scale(1.0);
-    -moz-transform: scale(1.0);
-    -ms-transform: scale(1.0);
-    -o-transform: scale(1.0);
-    transform: scale(1.0);
 
     -webkit-transition: visibility 0s 0s, -webkit-transform 0.5s 3s;
     -moz-transition: visibility 0s 0s, -moz-transform 0.5s 3s;
@@ -971,31 +978,17 @@ svg {
 }
 
 .open-view .view-container h2 {
-    opacity: 1;
 
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-
-    -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
-    -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
-    transition: transform 0.5s @hD, opacity 0.5s @hD;
+    -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
+    -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
+    transition: transform 0.5s 0s, opacity 0.5s 0s;
 }
 
 .open-view .view-container .list-container {
-    opacity: 1;
 
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-
-    -webkit-transition: -webkit-transform 0.5s @hD, opacity 0.5s @hD;
-    -moz-transition: -moz-transform 0.5s @hD, opacity 0.5s @hD;
-    transition: transform 0.5s @hD, opacity 0.5s @hD;
+    -webkit-transition: -webkit-transform 0.5s 0s, opacity 0.5s 0s;
+    -moz-transition: -moz-transform 0.5s 0s, opacity 0.5s 0s;
+    transition: transform 0.5s 0s, opacity 0.5s 0s;
 }
 
 
@@ -1041,7 +1034,7 @@ svg {
 
         >h2 {
             font-weight: 300;
-            font-size: 1.2em;
+            font-size: 1.2em!important;
             color: @primarycolor;
             padding: 1.1em 1.8em 1.1em 1.4em;
             margin: 0;
@@ -1334,6 +1327,10 @@ svg {
     .front_main_content .widget_list {
         min-width: 60%;
     }
+    
+    .view-container .widget_list {
+        width: 90%;
+    }
 
 
     #skin_wrapper .main_top .content .row .front_main_content .column-left {
@@ -1371,6 +1368,9 @@ svg {
             font-size: 1.5em;
         }
     }
+    
+    
+    
 
 }
 
@@ -2096,6 +2096,9 @@ body .main .ufld_icon_links {
 
 .profile_column_right {
 
+    .fieldset {
+        overflow: visible!important;
+    }
 
     .panel-default {
         background: @defaultcolor !important;
@@ -2223,7 +2226,7 @@ body .main .ufld_icon_links {
 
     z-index: 3;
     position: relative;
-    background: #FCFCFC;
+    background: #FFF;
 
     .container .row .col-md-12 {
         padding: 0;
@@ -2465,9 +2468,9 @@ body .main .ufld_icon_links {
 
     }
 
-    .widget_plugin_evo_Calr {
+    .widget_plugin_evo_Calr, .widget_core_coll_avatar {
         text-align: left;
-
+        padding: 0;
     }
 
 

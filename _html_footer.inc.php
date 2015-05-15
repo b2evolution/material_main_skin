@@ -22,10 +22,19 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
 
 	$Blog->disp_setting( 'footer_includes', 'raw' );
 
-        echo '<div class="view-container"><div class="container content main"></div></div>';
+        
         ?>
 
-
+<div class="view-container">
+    <div class="view-background"></div>   
+        
+    <div class="container content">
+        <div class="widget-container main"></div>
+            
+    </div>
+             
+    
+</div>
 
  <script type='text/javascript' src='mainscript.js'></script>
 
