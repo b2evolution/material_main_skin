@@ -175,7 +175,7 @@
 
     /* Creating 3 columns (Info section) in secondary area */
 
-    $('.evo_container__footer').ready(function() {
+    $('.secondary_area').ready(function() {
 
         var widgets = [
             '.widget_plugin_evo_Calr',
@@ -197,8 +197,8 @@
         ];
 
 
-        var secondary = $('.evo_container__footer .col-md-12:first-child');
-        var main_footer = $('.evo_container__footer .col-md-12:last-child');
+        var secondary = $('.secondary_area .col-md-12:first-child');
+        var main_footer = $('.secondary_area .col-md-12:last-child');
 
         if ($(main_footer).find('.info_section').size() < 1) {
             $(main_footer).prepend('<div class="info_section"><div class="container"></div></div>');
@@ -303,7 +303,7 @@
 
     var current_list;
 
-    var site_info = $('.evo_container__footer .container .row .col-md-12:last-child');
+    var site_info = $('.secondary_area .container .row .col-md-12:last-child');
 
     /* Open list in a view container */
 
