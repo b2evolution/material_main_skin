@@ -1022,6 +1022,17 @@ svg {
 .widget_core_user_login .panel-default input:hover {
   background: #E5E5E5;
 }
+.evo_container__front_page_primary {
+  float: left;
+  box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.4);
+  padding: 2em;
+  background: #f7f7f7;
+  display: block;
+  margin-bottom: 1em!important;
+}
+.evo_container__front_page_primary p {
+  color: #000;
+}
 /* Widget box style */
 .widget_core_coll_tag_cloud,
 .widget_core_coll_xml_feeds,
