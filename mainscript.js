@@ -161,6 +161,13 @@
             }
 
         });
+        
+        $(main_area).find('.evo_container__front_page_primary').each(function() {
+            
+              $('.column-left').append($(this).detach());
+            
+        });
+        
 
         $(main_area).addClass('load');
 
