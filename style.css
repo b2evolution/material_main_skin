@@ -1261,7 +1261,7 @@ body .main .ufld_icon_links a[class*="ufld__hoverbgcolor"] span:hover {
 }
 body .main .ufld_icon_links a {
   background: rgba(255, 255, 255, 0) !important;
-  margin: 0 0px 0px 10px;
+  margin: 0 10px 0px 0px;
   text-align: center;
   -webkit-transition: background 0.2s;
   -moz-transition: background 0.2s;
