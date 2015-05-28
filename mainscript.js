@@ -208,12 +208,12 @@
         var main_footer = $('.secondary_area .col-md-12:last-child');
 
         if ($(main_footer).find('.info_section').size() < 1) {
-            $(main_footer).prepend('<div class="info_section"><div class="container"></div></div>');
+            $(main_footer).prepend('<div class="info_section"></div>');
         }
 
         for (var i = 0; i < widgets.length; i++) {
 
-            $('.info_section .container').append($(secondary).find(widgets[i]).detach());
+            $('.info_section').append($(secondary).find(widgets[i]).detach());
         }
 
     });

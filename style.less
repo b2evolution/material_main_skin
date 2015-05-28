@@ -154,13 +154,13 @@ input[type="submit"],
 
 
 .main a {
-    color: @textcolor!important;
     text-decoration: none;
     outline: 0;
+    color: @textcolor;
 }
 
 .main .content a:hover {
-    color: @primarycolor!important;
+    color: @primarycolor;
 }
 
 
@@ -275,7 +275,7 @@ input[type="submit"],
 }
 
 .content a:hover {
-    color: @primarycolor !important;
+    color: @primarycolor;
 }
 
 p {
@@ -542,6 +542,9 @@ svg {
     -moz-transition: opacity 1s 1s;
     transition: opacity 1s 1s;
 
+    img {
+        display: none;
+    }
 
 }
 
@@ -573,8 +576,6 @@ svg {
     background: #fff;
     z-index: 3;
     position: relative;
-    padding-bottom: 2em;
-
 
     .main_top {
         display: table-row;
@@ -602,6 +603,8 @@ svg {
                 border-radius: 0px;
                 height: 100%;
                 position: relative;
+                float: left;
+                width: 100%;
                 border-radius: 0px;
                 padding: 7em 0em 1em;
                 opacity: 0;
@@ -757,7 +760,7 @@ svg {
     .widget-container {
         display: inline-block;
         width: 100%;
-        
+
         opacity: 0;
 
         -webkit-transform: translateY(@vY) translateZ(0);
@@ -935,7 +938,7 @@ svg {
 
 .open-view .view-container {
     visibility: visible;
-    
+
     -webkit-transition: visibility 0s 0s;
     -moz-transition: visibility 0s 0s;
     transition: visibility 0s 0s;
@@ -955,9 +958,9 @@ svg {
     -ms-transform: translateY(0) translateZ(0);
     -o-transform: translateY(0) translateZ(0);
     transform: translateY(0) translateZ(0);
-    
+
     opacity: 1;
-    
+
     -webkit-transition: -webkit-transform @startV 0s, opacity 0.5s 0s;
     -moz-transition: -moz-transform @startV 0s, opacity 0.5s 0s;
     transition: transform @startV 0s, opacity 0.5s 0s;
@@ -1217,7 +1220,6 @@ svg {
     }
 
     p {
-        color: #666 !important;
         margin: 0em;
     }
 
@@ -1248,7 +1250,7 @@ svg {
         input {
             font-size: 1.0em;
             margin: 0;
-            color: @primarycolor !important;
+            color: @primarycolor;
         }
         input:hover {
             background: #E5E5E5;
@@ -1262,56 +1264,64 @@ svg {
 
 
 .evo_container__front_page_primary {
-    float: left;
-    box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
-    padding: 2em;
-    background: @defaultcolor;
-    display: block;
-    margin-bottom: 1em!important;
-    
-    p {
-        color: #000;
+
+    article {
+        float: left;
+        box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
+        padding: 2em;
+        background: @defaultcolor;
+        display: block;
+        margin-bottom: 1em!important;
+
+        p {
+            color: #000;
+        }
     }
 }
 
 
 
 /* Widget box style */  
-.widget_core_coll_tag_cloud,
-.widget_core_coll_xml_feeds,
-.widget_plugin_evo_Arch, 
-.widget_core_content_hierarchy,
-.widget_core_coll_longdesc,
-.widget_plugin_evo_WhosOnline,
-.widget_core_colls_list_public,
-.widget_core_colls_list_owner,
-.widget_core_user_login,
-.widget_core_user_tools,
-.widget_core_free_html,
-.widget_core_menu_link,
-.widget_core_msg_menu_link,
-.widget_core_coll_current_filters,
-.widget_core_linkblog
-{
 
-    box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
-    padding: 2em;
-    background: @defaultcolor;
-    display: block;
-    margin-bottom: 1em!important;
-    min-width: 40%;
+.main_top {
 
-    h2 {
-        color: @primarycolor;
-        margin: -0.5em 0 .4em;
-        font-size: 1.8em;
-        line-height: 1.6em;
+    .widget_core_coll_tag_cloud,
+    .widget_core_coll_xml_feeds,
+    .widget_plugin_evo_Arch, 
+    .widget_core_content_hierarchy,
+    .widget_core_coll_longdesc,
+    .widget_plugin_evo_WhosOnline,
+    .widget_core_colls_list_public,
+    .widget_core_colls_list_owner,
+    .widget_core_user_login,
+    .widget_core_user_tools,
+    .widget_core_free_html,
+    .widget_core_menu_link,
+    .widget_core_msg_menu_link,
+    .widget_core_coll_current_filters,
+    .widget_core_linkblog
+    {
+
+        box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
+        padding: 2em;
+        background: @defaultcolor;
+        display: block;
+        margin-bottom: 1em!important;
+        min-width: 40%;
+
+        h2 {
+            color: @primarycolor;
+            margin: -0.5em 0 .4em;
+            font-size: 1.8em;
+            line-height: 1.6em;
+        }
+
+        a.selected {
+            font-weight: 400;
+        }
+
     }
 
-    a.selected {
-        font-weight: 400;
-        color: @primarycolor!important;
-    }
 
 }
 
@@ -1337,7 +1347,7 @@ svg {
     .front_main_content .widget_list {
         min-width: 60%;
     }
-    
+
     .view-container .widget_list {
         width: 90%;
     }
@@ -1363,6 +1373,11 @@ svg {
         font-size: 16px;
     }
 
+    .front_main_content {
+        padding: 2em 0 2em !important;
+    }
+
+
     #skin_wrapper .main_top .content .row .front_main_content .column-left {
         width: 100%;
 
@@ -1378,9 +1393,9 @@ svg {
             font-size: 1.5em;
         }
     }
-    
-    
-    
+
+
+
 
 }
 
@@ -1397,7 +1412,6 @@ svg {
         color: @primarycolor;
         margin: 0em 0 0.4em;
         font-size: 1.8em;
-        line-height: 1.6em;
     }
 
     .widget_grid {
@@ -1473,6 +1487,14 @@ svg {
 
 .front_main_area .widget_core_user_links .ufld_icon_links {
     text-align: left;
+    a{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.disp_user .widget_core_user_links .ufld_icon_links {
+    text-align: right;
     a{
         width: 40px;
         height: 40px;
@@ -1661,7 +1683,7 @@ body .main .ufld_icon_links {
             color: @primarycolor;
 
             a {
-                color: @primarycolor !important;
+                color: @primarycolor;
             }
 
         }
@@ -1684,7 +1706,7 @@ body .main .ufld_icon_links {
             .bCalendarLinkPost {
                 font-weight: 400; 
                 a {
-                    color: @primarycolor !important; }
+                    color: @primarycolor; }
             }
 
             #bCalendarToday {
@@ -1792,7 +1814,7 @@ body .main .ufld_icon_links {
 
     h1, h2 {
         background: 0 0!important;
-        color: @primarycolor !important;
+        color: @primarycolor;
         box-shadow: 0 0 0!important;
         padding: 0 !important;
         margin: 0 !important;
@@ -1979,50 +2001,58 @@ body .main .ufld_icon_links {
                 border: 0;
                 border-radius: 0;
                 font-size: 1em;
-                margin-bottom: 1em;
+                margin-bottom: @btn-margin;
                 clear: both;
+                width: 100%;
             }
             >button {
                 clear: both;
             }
         }
 
+        @btn-background: #f7f7f7;
+        @btn-background-hover: #f4f4f4;
+        @btn-margin: 0.6em;
+
         p {
             position: relative;
-            display: inline-block;
-            margin-right: 1em !important;
-            margin-bottom: 1em;
+            display: block;
+            margin-bottom: @btn-margin;
+            overflow: hidden;
             a {
                 position: relative;
-                display: inline-block;
-
+                display: block;
+                button {
+                    background: @btn-background;
+                    font-weight: 400!important;
+                    margin-top: 0!important;
+                    width: 100%;
+                    padding: 14px 20px;
+                    text-align: left;
+                }
 
             }
+            a:hover button {
+                background: @btn-background-hover;
+            }
+
 
             button {
-                background: #E5E5E5!important;
+                background: @btn-background;
+                font-weight: 400!important;
+                margin-top: 0!important;
+                width: 100%;
+                padding: 14px 20px;
+                text-align: left;
 
-                font-weight: 400 !important;
-                margin-top: 0 !important;
-
-                box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
-
-                border: 0;
+            }
+            button:hover  {
+                background: @btn-background-hover;
+            }
+            button:focus {
                 outline: 0;
-                border-radius: 0;
-                font-size: 1em;
-                cursor: pointer;
-                padding: 14px 16px;
-                display: inline-block;
-
-
+                border: 0;
             }
-
-            button:active{
-                outline: 0 !important;
-                box-shadow: 0 2px 5px -1px rgba(0,0,0,.4) !important;
-            }
-
             .circle-1 {
                 fill:  rgba(174, 174, 174, 0.3);
                 position: relative;
@@ -2119,7 +2149,7 @@ body .main .ufld_icon_links {
 
         .panel-heading {
             font-size: 1.9em;
-            padding: 0.6em 1em 0.4em !important;
+            padding: 0.8em 1em 0.4em !important;
             color: @primarycolor;
             font-weight: 300;
             border: 0;
@@ -2141,9 +2171,9 @@ body .main .ufld_icon_links {
                     padding: 0.8em 0px;
                     padding-right: 18px;
                     text-transform: uppercase;
+                    width: 25%;
 
                     span {
-                        color: @primarycolor;
                         text-align: left;
                         vertical-align: middle;
                         display: inline-block;
@@ -2161,6 +2191,7 @@ body .main .ufld_icon_links {
                     border-bottom: 1px solid #e7e7e7;
                     padding: 0.8em 0;
                     display: inline-block;
+                    width: 75%;
 
                     .form-control-static {
                         padding: 0;
@@ -2179,6 +2210,24 @@ body .main .ufld_icon_links {
             .form-group:last-child {
                 .controls {
                     border: 0;
+                }
+            }
+
+
+
+
+            @media only screen and (max-width: 1199px) {
+                .form-group {
+
+                    .control-label {
+                        width: 35%;
+                    }
+
+                    .controls {
+                        width: 65%;
+
+                    }
+
                 }
             }
 
@@ -2204,6 +2253,7 @@ body .main .ufld_icon_links {
 
 
 
+
         }
 
 
@@ -2213,13 +2263,19 @@ body .main .ufld_icon_links {
 
     @media only screen and (max-width: 640px) {
         .panel-default {
-            padding: 1.4em 1em;
+            padding: 0.4em 1em;
 
             .form-group {
                 padding: 0;
             }
-
+            .panel-body {
+                padding: 0 0.8em 1.6em;
+            }
+            .panel-heading {
+                padding: 0.6em 0.2em 0.4em !important;
+            }
         }
+
 
     }
 
@@ -2237,6 +2293,7 @@ body .main .ufld_icon_links {
     z-index: 3;
     position: relative;
     background: #FFF;
+    padding: 5em 0 0em;
 
     .container .row .col-md-12 {
         padding: 0;
@@ -2264,7 +2321,7 @@ body .main .ufld_icon_links {
         padding: 2em;
 
         h2 {
-            color: @primarycolor !important;
+            color: @primarycolor;
             background: transparent !important;
             padding: 0 0 0.5em;
             box-shadow: 0 0 0;
@@ -2300,12 +2357,13 @@ body .main .ufld_icon_links {
         max-width: 100%;
         width: 100%;
         vertical-align: top;
-        margin-bottom: 2em;
+        margin-bottom: 3em;
 
         h2 {
             border: 0;
             padding: 1.0em 1em;
             background: #498DFD;
+            margin-top: 0;
             color: #fff;
             box-shadow: 0 2px 5px -1px rgba(0,0,0,.6);
         }
@@ -2332,6 +2390,13 @@ body .main .ufld_icon_links {
         padding-right: 2em;
         vertical-align: top;
 
+        box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
+        padding: 2em;
+        background: @defaultcolor;
+        display: block;
+        margin-bottom: 1em!important;
+        min-width: 40%;
+
         h2 {
             padding: 0 0 0.2em;
             color: @primarycolor;
@@ -2348,7 +2413,7 @@ body .main .ufld_icon_links {
 
     .widget_core_coll_longdesc, .widget_core_user_tools {
         h2 {
-            color: @primarycolor !important;
+            color: @primarycolor;
             background: transparent !important;
             padding: 0 0 0.5em  !important;
             box-shadow: 0 0 0 !important;
@@ -2392,7 +2457,7 @@ body .main .ufld_icon_links {
         color: #000;
 
         p {
-            color: #000;
+
         }
     }
 
@@ -2411,6 +2476,7 @@ body .main .ufld_icon_links {
 
 .secondary_area .info_section {
     padding: 0em 0 2em;
+    text-align: left;
 
     .widget {
         display: inline-block;
@@ -2495,6 +2561,11 @@ body .main .ufld_icon_links {
 
 .widget_core_org_members {
 
+    svg {
+       z-index: 3;
+      
+    }
+    
     .col-lg-4:hover {
         box-shadow: 0 2px 12px -1px rgba(0, 0, 0, 0.6);
 
@@ -2520,7 +2591,7 @@ body .main .ufld_icon_links {
             width: 110px;
             height: 110px;
             float: left;
-            z-index: 3;
+            z-index: 4;
             position: relative;
             margin-right: 0.8em;
         }
@@ -2532,7 +2603,7 @@ body .main .ufld_icon_links {
             color: #448aff;
             font-weight: 300;
             text-align: left;
-            z-index: 2;
+            z-index: 3;
             position: relative;
         }
 
@@ -2562,7 +2633,6 @@ body .main .ufld_icon_links {
 
         .user_field {
             text-align: left;
-            color: #000;
             z-index: 2;
             position: relative;
             margin: 0 0 1em;
@@ -2820,257 +2890,6 @@ body .main .ufld_icon_links {
 
 
 
-
-
-/* Comments */
-
-
-.main .comments_title {
-    margin: 2em 0em 0.6em;
-    font-weight: 300;
-    font-size: 1.7em;
-}
-
-.main .evoComment {
-    box-shadow: 0 0 0;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid @divider;
-    padding: 1.2em 0 1em;
-
-    .evoComment-avatar {
-        display: inline-block;
-        float: left;
-        margin-right: 1em;
-
-        .bCommentAvatar {
-            border: 0;
-            margin: 0;
-            margin: 0em 0em 0 0 !important;
-            border-radius: 50% !important;
-            overflow: hidden;
-            padding: 0;
-        }
-    }
-
-    .panel-heading {
-        background: transparent;
-        padding: 0;
-        color: @primarycolor;
-        float: left;
-        margin-top: 1em;
-        border: 0;
-        a {
-            color: @primarycolor !important;
-            font-weight: 400;
-        }
-
-
-
-        .panel-title,
-        .evoComment-title {
-
-            background: transparent;
-            border: 0;
-            border-radius: 0;
-            padding: 0;
-            font-size: 1.1em;
-            margin: 0;
-            color: @textcolor;
-            display: block;
-        }
-
-        .in-response {
-            margin-top: 3px;
-            font-size: 0.8em;
-        }
-
-    }
-
-    .panel-body {
-        padding: 0.6em 0 0;
-        clear: both;
-
-
-        .evoComment-rating {
-            font-size: 0.76em;
-            margin: 0;
-        }
-
-        .evoComment-text {
-            padding: 0.4em 0 0;
-            font-size: 0.94em;
-            p {
-
-            }
-
-        }
-
-        .evoComment-info {
-            margin: 1ex 0;
-            font-size: 1.2em;
-
-            small {
-                display: block;
-
-                .comment_date {
-                    margin-top: 18px;
-                    color: #666666;
-                    float: left;
-                    i {
-                        margin-right: 0.4em;
-                        font-size: 1.1em;
-                        color: #666666;
-                    }
-                }
-
-                .comment_actions {
-                    float: right;
-                }
-
-                a {
-                    display: inline-block;
-                    margin: 0;
-                    margin-left: .6em;
-                    padding: .6em;
-                    border-radius: 2px;
-                    background: @defaultcolor;
-                    position: relative;
-                    font-weight: 400;
-                    color: @textcolor;
-                    line-height: 1.4em;
-                    float: none;
-
-                    span:before {
-                        font-weight: 400;
-                        color: #212121;
-                        font-size: 1.1em;
-                    }
-                }
-                a:hover {
-                    color: @primarycolor;
-                }
-
-            }
-        }
-
-    }
-
-}
-
-
-
-/* Comment form */
-
-.main .comment_form {
-    box-shadow: 0 0 0;
-    border: 0;
-    border-radius: 0;
-    margin-top: 2.6em;
-    margin-bottom: 0;
-
-    form {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        overflow: visible;
-        .form-group {
-            margin-right: 0; 
-            margin-left: 0; 
-        }
-
-        .control-buttons input {
-            margin-right: 1em;
-        }
-
-
-        #uploadfile_A1 {
-            width: auto;
-            margin: 0;
-            margin-left: 1.8em;
-        }
-        #uploadfile_A1:focus {
-            outline: 0;
-        }
-
-        #ffield_uploadfile_A1 .controls .help-inline {
-            color: #999;
-            font-size: 84%;
-            position: absolute;
-            top: -1px;
-            left: 0;
-
-            span {
-                font-size: 1.4em;
-            }
-        }
-
-        .panel {
-            border: 0;
-            box-shadow: 0 0 0;
-            border-radius: 0;
-            margin: 0;
-        }
-
-
-        #comment_rating {
-            visibility: visible;
-        }
-
-    }
-
-    textarea:focus {
-        outline: 0;
-        -webkit-box-shadow: 0 0 0;
-        box-shadow: 0 0 0;
-    }
-
-    .panel-heading {
-        background: transparent;
-        border: 0;
-        border-radius: 0;
-        padding: 0;
-        margin: 1em 0;
-        font-weight: 300;
-
-        h2 {
-            font-size: 1.7em;
-        }
-
-    }
-
-    .panel-body {
-        padding: 0;
-    }
-
-    .control-label {
-        text-align: left;
-        padding: 0;
-        font-weight: 500;
-        letter-spacing: .6px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        color: rgba(0, 0, 0, 0.6);
-    }
-
-}
-
-/* Comment Notification */
-
-.comment_notification {
-    text-align: left;
-
-    .fa-envelope-square:before {
-        font-family: Fontawesome;
-        -webkit-font-smoothing: antialiased;
-        content: '\f0e0';
-        color: #222;
-        font-size: 1.2em;
-        margin-right: 0.4em;
-    }
-
-
-}
 
 .main .feedback_feed_msg {
     text-align: left;
@@ -3671,7 +3490,6 @@ div.action_messages, div.log_container {
 
 // Organization Members widget
 .widget_core_org_members {
-    margin: 5em 0 30px;
     color: #333;
     img {
         width: 200px;

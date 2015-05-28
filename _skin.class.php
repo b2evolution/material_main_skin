@@ -80,41 +80,41 @@ class material_main_Skin extends Skin
 					'size' => '50'
 				),
 				'front_title_color' => array(
-					'label' => T_('Front page title color'),
+					'label' => T_('Front page background text color'),
 					'note' => T_('E-g: #ff0000 for red'),
-					'defaultvalue' => '#F0F0F0',
+					'defaultvalue' => '#FFFFFF',
 					'type' => 'color',
 				),
 				'front_text_color' => array(
 					'label' => T_('Front page text color'),
 					'note' => T_('E-g: #00ff00 for green'),
-					'defaultvalue' => '#FFFFFF',
+					'defaultvalue' => '#666',
 					'type' => 'color',
 				),
 				'front_link_color' => array(
-					'label' => T_('Front page link color'),
+					'label' => T_('Front page primary color'),
 					'note' => T_('E-g: #0000ff for blue'),
-					'defaultvalue' => '#FFFFFF',
+					'defaultvalue' => '#448AFF',
 					'type' => 'color',
 				),
 				'front_icon_color' => array(
 					'label' => T_('Front page inverse icon color'),
 					'note' => T_('E-g: #00ff00 for green'),
-					'defaultvalue' => '#CCCCCC',
+					'defaultvalue' => '#FFFFFF',
 					'type' => 'color',
 				),
 				'front_bg_color' => array(
 					'label' => T_('Front page main area background color'),
 					'note' => T_('E-g: #ff0000 for red'),
-					'defaultvalue' => '#000000',
+					'defaultvalue' => '#F1F1F1',
 					'type' => 'color',
 				),
 				'front_bg_opacity' => array(
-					'label' => T_('Front page main area background opacity'),
+					'label' => T_('Front page main area widget opacity'),
 					'note' => '%',
 					'size' => '2',
 					'maxlength' => '3',
-					'defaultvalue' => '10',
+					'defaultvalue' => '100',
 					'type' => 'integer',
 					'valid_range' => array(
 						'min' => 0, // from 0%
@@ -265,29 +265,82 @@ class material_main_Skin extends Skin
 						$color[ $c ] = $v.$v;
 					}
 				}
-				$custom_css .= '.front_main_content { background-color: rgba('.implode( ',', array_map( 'hexdec', $color ) ).','.$color_transparency.')'." }\n";
+				$custom_css .= '#skin_wrapper { background-color: rgba('.implode( ',', array_map( 'hexdec', $color ) ).','.$color_transparency.')'." }\n";
 			}
 
 			if( $color = $this->get_setting( 'front_title_color' ) )
 			{ // Custom title color:
-				$custom_css .= 'body.pictured .widget_core_coll_title h1 a { color: '.$color." }\n";
+				$custom_css .= 'body.pictured .widget_core_coll_title h1 a, .widget_core_coll_tagline.evo_widget, .main_top .widget_core_coll_media_index h2 { color: '.$color." }\n";
 			}
 
 			if( $color = $this->get_setting( 'front_text_color' ) )
 			{ // Custom text color:
-				$custom_css .= 'body.pictured, body.pictured h1 small { color: '.$color." }\n";
+				$custom_css .= '.content p, .content li, .content td, .content dd, .secondary_area .widget,'
+                                        . ' .evo_widget, .evo_widget .user_group, .evo_widget .user_level'
+                                        . ' { color: '.$color." }\n";
 			}
 
 			$link_color = $this->get_setting( 'front_link_color' );
 			$icon_color = $this->get_setting( 'front_icon_color' );
 			if( $link_color )
 			{ // Custom link color:
-				$custom_css .= 'body.pictured a { color: '.$link_color." }\n";
+				$custom_css .= ' .main_top .widget_core_coll_tag_cloud h2, .main_top .widget_core_coll_xml_feeds h2, .main_top .widget_plugin_evo_Arch h2, .main_top .widget_core_content_hierarchy h2, .main_top .widget_core_coll_longdesc h2, .main_top .widget_plugin_evo_WhosOnline h2,'
+                                        . ' .main_top .widget_core_colls_list_public h2, .main_top .widget_core_colls_list_owner h2, .main_top .widget_core_user_login h2, .main_top .widget_core_user_tools h2, .main_top .widget_core_free_html h2, .main_top .widget_core_menu_link h2,'
+                                        . ' .main_top .widget_core_msg_menu_link h2, .main_top .widget_core_coll_current_filters h2, .main_top .widget_core_linkblog h2, '
+                                       
+                                        . ' .secondary_area .widget_core_coll_tag_cloud h2, .secondary_area .widget_core_coll_xml_feeds h2, .secondary_area .widget_plugin_evo_Arch h2, .secondary_area .widget_core_content_hierarchy h2, .secondary_area .widget_plugin_evo_WhosOnline h2,'
+                                        . ' .secondary_area .widget_core_colls_list_public h2, .secondary_area .widget_core_colls_list_owner h2, .secondary_area .widget_core_user_login h2, .secondary_area .widget_core_user_tools h2, .secondary_area .widget_core_menu_link h2,'
+                                        . ' .secondary_area .widget_core_msg_menu_link h2, .secondary_area .widget_core_coll_current_filters h2, .secondary_area .widget_core_linkblog h2, .secondary_area .widget_core_online_users h2, .secondary_area .widget_core_user_avatars h2,'
+                                        
+                                        
+                                        . ' .widget_core_coll_current_filters h2, .widget_core_linkblog h2, .view-container .widget_list h2, .widget_core_coll_media_index h2, '
+                                        . ' .widget_plugin_evo_Calr table.bCalendarTable caption a, .widget_plugin_evo_Calr table.bCalendarTable caption, .widget_plugin_evo_Calr table.bCalendarTable tbody .bCalendarLinkPost a,'
+                                        . ' .main .content a:hover, .content a:hover,'
+                                        . ' .widget_core_org_members .col-lg-4 h3, .widget_core_coll_search_form h1, .widget_core_coll_search_form h2, .secondary_area .widget_core_coll_search_form h1, .secondary_area .widget_core_coll_search_form h2,'
+                                        . ' .widget_plugin_evo_Calr table.bCalendarTable tfoot #next a:hover::before, .widget_plugin_evo_Calr table.bCalendarTable tfoot #next a:hover::after,'
+                                        . ' .widget_plugin_evo_Calr table.bCalendarTable tfoot #prev a:hover::before, .widget_plugin_evo_Calr table.bCalendarTable tfoot #prev a:hover::after,'
+                                        . ' .front_main_content .widget_list > h2, button, input[type="button"], input[type="reset"], input[type="submit"],'
+                                        . ' .view-container .widget_list h4, .view-container .widget_list h4 a,'
+                                        . ' .widget_core_user_login strong a, .widget_core_user_login strong .panel-default input,'
+                                        
+                                        . ' #skin_wrapper .profile_column_left h1, #skin_wrapper .profile_column_left .btn-primary, #skin_wrapper .profile_column_left .btn-primary button,'
+                                        . ' .profile_column_right .panel-default .panel-heading, .profile_column_right .panel-default .panel-body .form-group .control-label span, '
+                                        . ' .secondary_area .widget[class$="list"] h2, .secondary_area .widget[class$="list"] h4, .secondary_area .widget[class$="list"] h4 a,'
+                                        . ' .secondary_area .widget_core_coll_longdesc h2, .secondary_area .widget_core_user_tools h2, '
+                                        
+                                        . ' .main .pagination>li>a:hover, .main .pagination>li>span:hover, .main .pagination>li>.current, .main .pager li>a, .main .pager li>span,'
+                                        . ' .profile_column_right .panel-default .panel-heading, #skin_wrapper .profile_column_left h1'
+                                        . ''
+                                        
+                                        . '{ color: '.$link_color." }\n";
+                                
+                                $custom_css .= '.secondary_area .widget h2 { background: '.$link_color." }\n";
+                                
+                                
+                                $custom_css .= 'input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus,'
+                                         . ' input[type="password"]:focus, input[type="search"]:focus, textarea:focus'
+                                         . ' { border-bottom: 1px solid '.$link_color." }\n";
+                                
+                                $custom_css .= '.widget_core_coll_search_form form input[type=text]:focus { border-bottom: 2px solid '.$link_color." }\n";
+                                
+                                
+                                $custom_css .= '.widget_plugin_evo_Calr table.bCalendarTable tbody #bCalendarToday { border: 1px solid '.$link_color." }\n";
+                                
+                                
 			}
 			if( $link_color && $icon_color )
 			{ // Custom icon color:
-				$custom_css .= 'body.pictured .widget--social-media-links a { color: '.$icon_color.'; background-color: '.$link_color." }\n";
-				$custom_css .= 'body.pictured .widget--social-media-links a:hover { color: '.$link_color.'; background-color: '.$icon_color." }\n";
+                            
+                                $custom_css .= 'body.pictured .front_main_content .ufld_icon_links a[class*="ufld__hoverbgcolor"] span { color: '.$icon_color." }\n";
+				$custom_css .= 'body.pictured .front_main_content .ufld_icon_links a[class*="ufld__bgcolor"] span { color: '.$icon_color." }\n";
+				
+                                $custom_css .= 'body.pictured .front_main_content .ufld_icon_links a:hover { color: '.$icon_color." }\n";
+				
+                            
+				$custom_css .= 'body.pictured .front_main_content .ufld_icon_links a:not([class*="ufld__textcolor"]):not(:hover) { color: '.$icon_color." }\n";
+				$custom_css .= 'body.pictured .front_main_content .ufld_icon_links a:not([class*="ufld__bgcolor"]):not(:hover) { background-color: '.$link_color." }\n";
+				$custom_css .= 'body.pictured .front_main_content .ufld_icon_links a:hover:not([class*="ufld__hovertextcolor"]) { color: '.$link_color." }\n";
+				$custom_css .= 'body.pictured .front_main_content .ufld_icon_links a:hover:not([class*="ufld__hoverbgcolor"]) { background-color: '.$icon_color." }\n";
 			}
 
 			if( ! empty( $custom_css ) )
