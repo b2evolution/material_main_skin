@@ -19,27 +19,30 @@
     function element_click(e) {
 
         var element = e;
+        
+        var down = 0;
 
         $(element).on("mousedown", function(c) {
             var e = $(this).parent();
             create_svg(e, c);
-        });
-
-        $(element).on("mouseup", function(c) {
-            var e = $(this).parent();
-            hide_svg(e, c);
-            setTimeout(function() {
-                $(e).find('svg').detach();
-            }, 200);
+             console.log('click down');
+            
+            down = 1;
         });
 
         $(element).on("mouseleave", function(c) {
+            if( down === 1 ){
             var e = $(this).parent();
+            $(element)[0].click();
             hide_svg(e, c);
             setTimeout(function() {
                 $(e).find('svg').detach();
             }, 200);
+                down = 0;
+            }
         });
+        
+        
 
     }
 

@@ -1981,7 +1981,10 @@ body .main .ufld_icon_links a:hover {
 }
 /* Widget members */
 .widget_core_org_members svg {
-  z-index: 3;
+  z-index: 5;
+}
+.widget_core_org_members svg circle {
+  fill: rgba(0, 0, 0, 0.1);
 }
 .widget_core_org_members .col-lg-4:hover {
   box-shadow: 0 2px 12px -1px rgba(0, 0, 0, 0.6);
