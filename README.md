@@ -2,6 +2,8 @@
 
 This is a skin for b2evolution CMS v6.
 
-### Front Page
+![disp=front](skinshot_1.jpg)
 
-![disp=front](skinshot_front.jpg)
+![disp=front](skinshot_2.jpg)
+
+![disp=front](skinshot_3.jpg)
