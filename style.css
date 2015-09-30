@@ -2754,3 +2754,18 @@ div.log_container {
 .widget_core_org_members p.user_field {
   margin-bottom: 40px;
 }
+.extended_search_form .submit {
+  font-size: 18px !important;
+  margin-top: 0em !important;
+  margin-left: 10px !important;
+}
+#bCalendarToday {
+  border: 1px solid #448aff !important;
+  background-color: #448aff !important;
+  color: #fff;
+  border-radius: 2px !important;
+}
+.featured_post {
+  border-bottom: none;
+  margin-bottom: 0em;
+}
