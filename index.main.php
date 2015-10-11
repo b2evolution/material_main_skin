@@ -72,7 +72,7 @@ if( $is_pictured_page )
 	            // Display container and contents:
 	            skin_container(NT_('Page Top'), array(
 	                // The following params will be used as defaults for widgets included in this container:
-	                'block_start' => '<div class="widget $wi_class$">',
+	                'block_start' => '<div class="evo_widget $wi_class$">',
 	                'block_end' => '</div>',
 	                'block_display_title' => false,
 	                'list_start' => '<ul>',
@@ -92,7 +92,7 @@ if( $is_pictured_page )
                         // Display container and contents:
                         skin_container(NT_('Header'), array(
                             // The following params will be used as defaults for widgets included in this container:
-                            'block_start' => '<div class="widget $wi_class$">',
+                            'block_start' => '<div class="evo_widget $wi_class$">',
                             'block_end' => '</div>',
                             'block_title_start' => '<h1>',
                             'block_title_end' => '</h1>',
