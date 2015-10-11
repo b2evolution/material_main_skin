@@ -1154,6 +1154,9 @@ svg {
   }
 }
 /* Photo Index Widget */
+.widget_core_coll_media_index {
+  clear: both;
+}
 .widget_core_coll_media_index h2 {
   color: #448aff;
   margin: 0em 0 0.4em;
