@@ -1889,6 +1889,12 @@ body .main .ufld_icon_links a:hover {
   margin-top: -0.4em;
   margin-bottom: 0;
 }
+.secondary_area .widget_plugin_evo_Arch ul {
+  text-align: left;
+}
+.secondary_area .widget_plugin_evo_Arch ul li a {
+  font-size: 100%;
+}
 .secondary_area .widget_core_coll_longdesc h2,
 .secondary_area .widget_core_user_tools h2 {
   color: #448aff;
