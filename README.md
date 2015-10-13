@@ -71,8 +71,4 @@ In the Secondary Area, widgets are displayed in full container width, except the
   <li>User Tools</li>
 </ul>
 
-![disp=front](skinshot_1.jpg)
-
-![disp=front](skinshot_2.jpg)
-
-![disp=front](skinshot_3.jpg)
+![disp=front](skinshot_front.jpg)
