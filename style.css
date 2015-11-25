@@ -1932,6 +1932,79 @@ body .main .ufld_icon_links a:hover {
 .secondary_area .widget {
   color: #000;
 }
+div.widget_core_coll_item_list.evo_1pic__special ul,
+div.widget_core_coll_post_list.evo_1pic__special ul {
+  padding: 0;
+  margin-left: 0;
+}
+div.widget_core_coll_item_list.evo_1pic__special li,
+div.widget_core_coll_post_list.evo_1pic__special li {
+  clear: both;
+  list-style: none;
+  height: 85px;
+  margin: 5px 0;
+  padding: 0;
+}
+div.widget_core_coll_item_list.evo_1pic__special div.item_first_image,
+div.widget_core_coll_post_list.evo_1pic__special div.item_first_image {
+  float: left;
+  margin-right: 6px;
+}
+div.widget_core_coll_item_list.evo_1pic__special .item_first_image_placeholder,
+div.widget_core_coll_post_list.evo_1pic__special .item_first_image_placeholder {
+  display: table;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+  height: 80px;
+  width: 80px;
+  background: #f5f5f5;
+  margin-right: 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+div.widget_core_coll_item_list.evo_1pic__special .item_first_image_placeholder:before,
+div.widget_core_coll_post_list.evo_1pic__special .item_first_image_placeholder:before {
+  font-family: FontAwesome;
+  display: table-cell;
+  vertical-align: middle;
+  content: '\f0f6';
+  color: #ddd;
+  font-size: 40px;
+}
+div.widget_core_coll_item_list.evo_1pic__special div.item_title,
+div.widget_core_coll_post_list.evo_1pic__special div.item_title {
+  vertical-align: middle;
+  height: 80px;
+  display: -webkit-box;
+  display: table-cell;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.widget_core_coll_item_list.evo_1pic__special.evo_pics div.item_images,
+div.widget_core_coll_post_list.evo_1pic__special.evo_pics div.item_images {
+  display: inline-block;
+  float: left;
+  margin: 6px 6px 0 0;
+}
+div.widget_core_coll_item_list.evo_1pic__special.evo_pics div.item_images img,
+div.widget_core_coll_post_list.evo_1pic__special.evo_pics div.item_images img {
+  margin-bottom: 6px;
+}
+div.widget_core_coll_item_list div.item_title a,
+div.widget_core_coll_post_list div.item_title a {
+  font-size: 20px;
+}
+div.widget_core_coll_item_list img,
+div.widget_core_coll_post_list img {
+  margin-right: 6px;
+  border-radius: 3px;
+}
 /* Info Widgets Section */
 .secondary_area .info_section {
   padding: 0em 0 2em;
