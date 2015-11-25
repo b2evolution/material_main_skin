@@ -276,7 +276,7 @@
 
     var view_container = $('.view-container');
 
-    $('.main .front_main_content .evo_widget[class$="list"]').each(function(e) {
+    $('.main .front_main_content .evo_widget[class*="list"]').each(function(e) {
 
         var widget_list = $(this);
 
