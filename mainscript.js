@@ -133,7 +133,6 @@
 
         var right = [
             'widget_core_coll_category_list',
-            'widget_core_coll_post_list',
             'widget_core_coll_link_list',
             'widget_core_coll_comment_list',
             'widget_core_coll_post_list',
@@ -276,7 +275,7 @@
 
     var view_container = $('.view-container');
 
-    $('.main .front_main_content .evo_widget[class$="list"]').each(function(e) {
+    $('.main .front_main_content .evo_widget[class*="list"]').each(function(e) {
 
         var widget_list = $(this);
 
