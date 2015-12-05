@@ -586,7 +586,7 @@ svg {
             height: 100%;
 
             .front_main_area {
-                width: 100%;
+                // width: 100%;
                 max-width: 100%;
                 padding: 0;
                 margin-top: 0;
@@ -617,20 +617,6 @@ svg {
                 -webkit-transition: -webkit-transform 0.5s;
                 -moz-transition: -moz-transform 0.5s;
                 transition: transform 0.5s;
-
-                .column-left {
-                    width: 50%;
-                    display: inline-block;
-                    padding-right: 2em;
-                    float: left;
-                }
-                .column-right {
-                    width: 50%;
-                    display: inline-block;
-                    float: left;
-                    padding: 0;
-                    padding-left: 3em;
-                }
 
                 /* Front Main Widget Aligns */
 
@@ -830,6 +816,8 @@ svg {
             -moz-transition: -moz-transform 0.5s 0s, opacity 0.3s 0s;
             transition: transform 0.5s 0s, opacity 0.3s 0s;
 
+        }
+
 
 
             .close-trigger {
@@ -897,8 +885,6 @@ svg {
                 -o-transform: roatate(-45deg);
                 transform: roatate(-45deg);
             }
-
-        }
 
 
         h4 {
@@ -1001,8 +987,10 @@ svg {
     opacity: 0;
 }
 
-
-.front_main_content  {
+.main_right_area {    
+	padding-top: 7em;
+}
+.front_main_content, .main_right_area  {
 
     .widget_list:hover {
 
@@ -1030,7 +1018,7 @@ svg {
         transition: box-shadow 0.5s;
         box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
 
-        >h2 {
+        >h2, h3 {
             font-weight: 300;
             font-size: 1.2em!important;
             color: @primarycolor;
@@ -1265,7 +1253,7 @@ svg {
 
 .evo_container__front_page_primary {
 
-    article {
+    article, .widget_core_org_members {
         float: left;
         box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
         padding: 2em;
@@ -1277,6 +1265,9 @@ svg {
             color: #000;
         }
     }
+	.widget_core_org_members > div {
+		width: 100%;
+	}
 }
 
 
@@ -1299,7 +1290,8 @@ svg {
     .widget_core_menu_link,
     .widget_core_msg_menu_link,
     .widget_core_coll_current_filters,
-    .widget_core_linkblog
+    .widget_core_linkblog,
+	.widget_core_coll_media_index
     {
 
         box-shadow: 0 2px 5px -1px rgba(0,0,0,.4);
@@ -1338,6 +1330,12 @@ svg {
         min-width: 45%;
     }
 
+}
+@media only screen and (max-width: 991px) {
+	.main_right_area {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 @media only screen and (max-width: 990px) {
     .evo_widget {

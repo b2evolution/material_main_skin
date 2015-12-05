@@ -107,7 +107,7 @@ if( $is_pictured_page )
                     }
                     ?>
         <div class="row">
-            <div class="col-md-12<?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
+            <div class="col-md-6<?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
 
 		<main><!-- This is were a link like "Jump to main content" would land -->
 
@@ -305,13 +305,27 @@ if( $is_pictured_page )
 		
 			if( $disp == 'front' )
 			{ // End of wrapper for front page area, in order to have the $Messages outside this block
-				echo '</div>';// END OF <div class="front_main_content">
+				echo '</div>';// END OF div class="front_main_content"
 			}
 		?>
 
 		</main>
 
             </div><!-- .col -->
+			
+			<!-- ==================== START OF RIGHT MAIN SECTION SIDE ==================== -->
+			<div class="col-md-6 main_right_area">
+			<?php 
+				skin_container( NT_("Sidebar 2"), array(
+							'block_start' => '<div class="evo_widget widget $wi_class$">',
+							'block_end'  => '</div>',
+							'item_start' => '<li>',
+							'item_end' => '</li>',
+							// The following params will be used as defaults for widgets included in this container:
+						) );
+			?>
+			</div>
+			
         </div><!-- .row -->
 
     </div><!-- .container -->

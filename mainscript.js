@@ -1,13 +1,12 @@
 (function($) {
     'use strict';
 
-
+	
     element_click($('.widget_core_coll_media_index .loadimg'));
 
     element_click($('.widget_core_org_members .loadimg'));
 
     element_click($('.widget_core_coll_avatar .loadimg'));
-
 
     element_click($('.user_link'));
 
@@ -42,14 +41,9 @@
             }
         });
         
-        
-
     }
-
-
-
-
-
+	
+	
     /* Create circle in svg to its parent */
 
     function create_svg(e, c, x, y, d) {
@@ -94,6 +88,7 @@
         });
 
     }
+	
 
     /* End animation of circle */
 
@@ -103,15 +98,9 @@
             }
         });
     }
-
-
-    /* Main Area Widget Aligns */
-
-    var main_area = $('.front_main_content');
-
-    $(main_area).ready(function() {
-
-        var left = [
+	
+	
+    var widgets_group = [
             'widget_core_coll_avatar',
             'widget_core_coll_title',
             'widget_core_coll_tagline',
@@ -128,10 +117,7 @@
             'widget_core_coll_longdesc',
             'widget_core_msg_menu_link',
             'widget_core_menu_link',
-            'widget_core_coll_current_filters'
-        ];
-
-        var right = [
+            'widget_core_coll_current_filters',
             'widget_core_coll_category_list',
             'widget_core_coll_link_list',
             'widget_core_coll_comment_list',
@@ -143,83 +129,36 @@
             'widget_core_colls_list_public',
             'widget_core_colls_list_owner',
             'widget_core_linkblog'
-        ];
+    ];
+		
 
+    /* Main Area Widget Aligns */
 
-        $(main_area).prepend('<div class="column-left"></div><div class="column-right"></div>');
+    var main_area = $('.front_main_content');
 
+    $(main_area).ready(function() {
+
+        $(main_area).prepend('<div class="group-column"></div>');
 
         $(main_area).find('.evo_widget').each(function() {
 
-            for (var i = 0; i < left.length; i++) {
-                if ($(this).hasClass(left[i])) {
-                    $('.column-left').append($(this).detach());
-                }
-            }
-            for (var j = 0; j < right.length; j++) {
-                if ($(this).hasClass(right[j])) {
-                    $('.column-right').append($(this).detach());
+            for (var i = 0; i < widgets_group.length; i++) {
+                if ($(this).hasClass(widgets_group[i])) {
+                    $('.group-column').append($(this).detach());
                 }
             }
 
         });
         
-        $(main_area).find('.evo_container__front_page_primary').each(function() {
+        $(main_area).find('.front_main_area').each(function() {
             
-              $('.column-left').append($(this).detach());
+              $('.group-column').append($(this).detach());
             
         });
         
-
         $(main_area).addClass('load');
 
     });
-
-
-
-
-
-
-
-
-    /* Creating 3 columns (Info section) in secondary area */
-
-    $('.secondary_area').ready(function() {
-
-        var widgets = [
-            '.widget_plugin_evo_Calr',
-            '.widget_core_profile_menu_link',
-            '.widget_core_coll_avatar',
-            '.widget_core_user_login',
-            '.widget_core_content_hierarchy',
-            '.widget_core_online_users',
-            '.widget_core_user_avatars',
-            '.widget_core_coll_tag_cloud',
-            '.widget_core_coll_xml_feeds',
-            '.widget_plugin_evo_Arch',
-            '.widget_plugin_evo_WhosOnline',
-            '.widget_core_colls_list_public',
-            '.widget_core_colls_list_owner',
-            '.widget_core_linkblog',
-            '.widget_core_coll_search_form',
-            '.widget_core_user_tools'
-        ];
-
-
-        var secondary = $('.secondary_area .col-md-12:first-child');
-        var main_footer = $('.secondary_area .col-md-12:last-child');
-
-        if ($(main_footer).find('.info_section').size() < 1) {
-            $(main_footer).prepend('<div class="info_section"></div>');
-        }
-
-        for (var i = 0; i < widgets.length; i++) {
-
-            $('.info_section').append($(secondary).find(widgets[i]).detach());
-        }
-
-    });
-
 
 
     /* Social Icons Setup */
@@ -235,14 +174,11 @@
     });
 
 
-
-
     /* Widget form label animation */
 
     label_animation('.widget_core_coll_search_form form input[type=text]', '.widget_core_coll_search_form h2');
 
     label_animation('.widget_core_coll_search_form form input[type=text]', '.widget_core_coll_search_form h1');
-
 
     function label_animation(input, label) {
 
@@ -265,17 +201,14 @@
 
         });
 
-
     }
-
-
 
 
     /* Lists setup in main area */
 
     var view_container = $('.view-container');
 
-    $('.main .front_main_content .evo_widget[class*="list"]').each(function(e) {
+    $('.main .main_page_wrapper .evo_widget[class*="list"]').each(function(e) {
 
         var widget_list = $(this);
 
@@ -285,7 +218,7 @@
 
         var widget_list_view = $(widget_list).clone();
 
-        $(widget_list_view).find('h2').append('<span class="close-trigger"></span>');
+        $(widget_list_view).find('h2, h3').append('<span class="close-trigger"></span>');
 
         var list_content = $(widget_list_view).children().detach();
         $(widget_list_view).append('<div class="list-container content"></div>');
@@ -296,7 +229,7 @@
         $(view_container).children().children('.widget-container').append(widget_list_view);
 
 
-        $(widget_list).find('h2').append('<span class="list-icon"><i class="fa fa-angle-right"></i></span>');
+        $(widget_list).find('h2, h3').append('<span class="list-icon"><i class="fa fa-angle-right"></i></span>');
 
         $(widget_list).find('h4').detach();
         $(widget_list).find('ul').detach();
@@ -306,7 +239,7 @@
     });
 
 
-    var list_title = $('.main .front_main_content .widget_list h2');
+    var list_title = $('.main .front_main_content .widget_list h2, .main .main_right_area .widget_list h3');
 
     var close_trigger = $('.close-trigger');
 
@@ -350,8 +283,6 @@
 
         $(widget_list_view).css('display', 'inline-block');
         
-
-
 
         setTimeout(function() {
             hide_svg(e, c);
@@ -407,7 +338,6 @@
              $(current_list).css('display', 'none');
         }, 900);
             
-        
         $(current_list).find('.list-container').css({
             'opacity': '0',
             '-webkit-transform': '',
@@ -417,7 +347,7 @@
             'transform': ''
         });
 
-        $(current_list).find('h2').css({
+        $(current_list).find('h2, h3').css({
             'opacity': '0',
             '-webkit-transform': '',
             '-moz-transform': '',
@@ -426,10 +356,6 @@
             'transform': ''
         });
           
-
     });
-
-
-
 
 })(jQuery);
