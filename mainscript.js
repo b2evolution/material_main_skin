@@ -25,7 +25,7 @@
             var e = $(this).parent();
             create_svg(e, c);
              console.log('click down');
-            
+			 
             down = 1;
         });
 
@@ -42,7 +42,6 @@
         });
         
     }
-	
 	
     /* Create circle in svg to its parent */
 
@@ -218,7 +217,7 @@
 
         var widget_list_view = $(widget_list).clone();
 
-        $(widget_list_view).find('h2, h3').append('<span class="close-trigger"></span>');
+        $(widget_list_view).find('h2, h3').append('<span class="close-trigger">&#10006;</span>');
 
         var list_content = $(widget_list_view).children().detach();
         $(widget_list_view).append('<div class="list-container content"></div>');
@@ -306,6 +305,15 @@
                     });
 
                     $(widget_list_view).find('h2').css({
+                        'opacity': '1',
+                        '-webkit-transform': 'translateY(0)',
+                        '-moz-transform': 'translateY(0)',
+                        '-ms-transform': 'translateY(0)',
+                        '-o-transform': 'translateY(0)',
+                        'transform': 'translateY(0)'
+                    });
+					
+                    $(widget_list_view).find('h3').css({
                         'opacity': '1',
                         '-webkit-transform': 'translateY(0)',
                         '-moz-transform': 'translateY(0)',
