@@ -166,6 +166,13 @@ textarea,
   -webkit-font-smoothing: subpixel-antialiased;
   position: relative;
 }
+textarea:focus {
+  outline: none !important;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  box-shadow: none !important;
+}
 .main a {
   text-decoration: none;
   outline: 0;
@@ -580,13 +587,16 @@ svg {
   font-size: 1.4em;
 }
 .pageHeader,
-.evo_container__header {
+.evo_container__header,
+.evo_container__page_top {
   padding: 2em 0 0;
 }
 .pageHeader .evo_widget,
 .evo_container__header .evo_widget,
+.evo_container__page_top .evo_widget,
 .pageHeader .widget,
-.evo_container__header .widget {
+.evo_container__header .widget,
+.evo_container__page_top .widget {
   float: left;
   clear: both;
   margin: 0;
@@ -594,8 +604,13 @@ svg {
   width: 100%;
 }
 .pageHeader .widget_core_coll_tagline,
-.evo_container__header .widget_core_coll_tagline {
+.evo_container__header .widget_core_coll_tagline,
+.evo_container__page_top .widget_core_coll_tagline {
   margin-top: -0.8em !important;
+}
+.disp_login .evo_container__header,
+.disp_login .evo_container__page_top {
+  padding-bottom: 2em;
 }
 .widget_core_coll_avatar a {
   display: inline-block;
@@ -718,7 +733,6 @@ svg {
   -moz-transform: scale(1.1);
   -ms-transform: scale(1.1);
   -o-transform: scale(1.1);
-  transform: scale(1.1);
 }
 .view-container .widget_list h4 {
   position: relative;
@@ -1197,12 +1211,17 @@ svg {
   width: 40px;
   height: 40px;
 }
-.disp_user .widget_core_user_links .ufld_icon_links {
+.disp_user .widget_core_user_links .ufld_icon_links,
+.disp_login .widget_core_user_links .ufld_icon_links {
   text-align: right;
 }
-.disp_user .widget_core_user_links .ufld_icon_links a {
+.disp_user .widget_core_user_links .ufld_icon_links a,
+.disp_login .widget_core_user_links .ufld_icon_links a {
   width: 40px;
   height: 40px;
+}
+.disp_login .widget_core_user_links .ufld_icon_links a span:before {
+  color: #fff;
 }
 body .main .ufld_icon_links {
   text-align: left;
@@ -1804,8 +1823,6 @@ body .main .ufld_icon_links a:hover {
   margin-left: 0.6em;
 }
 .secondary_area .widget {
-  max-width: 100%;
-  width: 100%;
   vertical-align: top;
   margin-bottom: 3em;
 }
@@ -1988,8 +2005,6 @@ div.widget_core_coll_post_list img {
 }
 .secondary_area .info_section .widget {
   display: inline-block;
-  min-width: 32%;
-  width: 32%;
   margin: 0 2% 2em 0;
   text-align: left;
   padding: 2em;
@@ -2833,4 +2848,43 @@ div.log_container {
 .main_page_wrapper h2,
 .main_page_wrapper h3 {
   color: #448aff;
+}
+.SaveButton {
+  background: #ededed !important;
+}
+.evo_panel__login {
+  max-width: 550px;
+  margin: 0px auto;
+}
+.evo_panel__login .skin-form .panel-heading .close {
+  top: -32px;
+}
+.evo_panel__login .skin-form .form-group .control-buttons .btn-success,
+.evo_panel__login .skin-form .form-group .control-buttons .btn-primary.pull-right {
+  float: none !important;
+  display: inline-block;
+  background: #f7f7f7;
+  color: #448aff;
+  margin: 0.6em;
+  border: 0 !important;
+  padding: 14px 16px !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+}
+.evo_panel__login .skin-form .form-group .control-buttons .btn-success:hover,
+.evo_panel__login .skin-form .form-group .control-buttons .btn-primary.pull-right:hover {
+  background: #f4f4f4;
+}
+.evo_panel__login .skin-form input:focus:invalid:focus,
+.evo_panel__login .skin-form textarea:focus:invalid:focus,
+.evo_panel__login .skin-form select:focus:invalid:focus {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.evo_login_dialog_standard_link a,
+.evo_login_dialog_footer {
+  color: #fff;
 }

@@ -17,6 +17,13 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
  */
 class material_main_Skin extends Skin
 {
+	var $version = '1.1';
+	/**
+	 * Do we want to use style.min.css instead of style.css ?
+	 */
+	var $use_min_css = true;  // true|false|'check' Set this to true for better optimization
+	
+	
 	/**
 	 * Get default name for the skin.
 	 * Note: the admin can customize it.
@@ -500,12 +507,12 @@ class material_main_Skin extends Skin
 					'labelclass'     => 'control-label col-sm-3',
 					'labelstart'     => '',
 					'labelend'       => "\n",
-					'labelempty'     => '<label class="control-label col-sm-3"></label>',
+					'labelempty'     => '<label class="control-label"></label>',
 					'inputstart'     => '<div class="controls col-sm-9">',
 					'inputend'       => "</div>\n",
 					'infostart'      => '<div class="controls col-sm-9"><div class="form-control-static">',
 					'infoend'        => "</div></div>\n",
-					'buttonsstart'   => '<div class="form-group"><div class="control-buttons col-sm-offset-3 col-sm-9">',
+					'buttonsstart'   => '<div class="form-group"><div class="control-buttons">',
 					'buttonsend'     => "</div></div>\n\n",
 					'customstart'    => '<div class="custom_content">',
 					'customend'      => "</div>\n",

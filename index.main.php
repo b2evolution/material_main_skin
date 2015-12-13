@@ -68,19 +68,19 @@ if( $is_pictured_page )
                 <div class="coll-xs-12 coll-sm-12 col-md-4 col-md-push-8">
                     <div class="evo_container evo_container__page_top">
 	            <?php
-	            // ------------------------- "Page Top" CONTAINER EMBEDDED HERE --------------------------
-	            // Display container and contents:
-	            skin_container(NT_('Page Top'), array(
-	                // The following params will be used as defaults for widgets included in this container:
-	                'block_start' => '<div class="evo_widget $wi_class$">',
-	                'block_end' => '</div>',
-	                'block_display_title' => false,
-	                'list_start' => '<ul>',
-	                'list_end' => '</ul>',
-	                'item_start' => '<li>',
-	                'item_end' => '</li>',
-	            ));
-	            // ----------------------------- END OF "Page Top" CONTAINER -----------------------------
+			// ------------------------- "Page Top" CONTAINER EMBEDDED HERE --------------------------
+			// Display container and contents:
+			skin_container( NT_('Page Top'), array(
+					// The following params will be used as defaults for widgets included in this container:
+					'block_start'         => '<div class="evo_widget $wi_class$">',
+					'block_end'           => '</div>',
+					'block_display_title' => false,
+					'list_start'          => '<ul>',
+					'list_end'            => '</ul>',
+					'item_start'          => '<li>',
+					'item_end'            => '</li>',
+				) );
+			// ----------------------------- END OF "Page Top" CONTAINER -----------------------------
 	            ?>
                     </div>
 		</div><!-- .col -->
@@ -88,16 +88,16 @@ if( $is_pictured_page )
                 <div class="coll-xs-12 col-sm-12 col-md-8 col-md-pull-4">
                     <div class="evo_container evo_container__header">
                         <?php
-                        // ------------------------- "Header" CONTAINER EMBEDDED HERE --------------------------
-                        // Display container and contents:
-                        skin_container(NT_('Header'), array(
-                            // The following params will be used as defaults for widgets included in this container:
-                            'block_start' => '<div class="evo_widget $wi_class$">',
-                            'block_end' => '</div>',
-                            'block_title_start' => '<h1>',
-                            'block_title_end' => '</h1>',
-                        ));
-                        // ----------------------------- END OF "Header" CONTAINER -----------------------------
+			// ------------------------- "Header" CONTAINER EMBEDDED HERE --------------------------
+			// Display container and contents:
+			skin_container( NT_('Header'), array(
+					// The following params will be used as defaults for widgets included in this container:
+					'block_start'       => '<div class="evo_widget $wi_class$">',
+					'block_end'         => '</div>',
+					'block_title_start' => '<h1>',
+					'block_title_end'   => '</h1>',
+				) );
+			// ----------------------------- END OF "Header" CONTAINER -----------------------------
                         ?>
                     </div>
 		</div><!-- .col -->
@@ -107,7 +107,7 @@ if( $is_pictured_page )
                     }
                     ?>
         <div class="row">
-            <div class="col-md-6<?php echo $disp == 'front' ? ' front_main_area' : ''; ?>">
+            <div class="<?php if( in_array( $disp, array( 'threads', 'login' ) ) ) {echo 'col-md-12';}else{echo 'col-md-6';} echo $disp == 'front' ? ' front_main_area' : ''; ?>">
 
 		<main><!-- This is were a link like "Jump to main content" would land -->
 
@@ -313,10 +313,15 @@ if( $is_pictured_page )
 
             </div><!-- .col -->
 			
-			<!-- ==================== START OF RIGHT MAIN SECTION SIDE ==================== -->
+			<?php if ( in_array( $disp, array( 'threads', 'login' ) ) ) { // Don't display Sidebar 2 on disp=threads
+				
+			} else { 
+			// ==================== START OF RIGHT MAIN SECTION SIDE ====================
+			?>
+			
 			<div class="col-md-6 main_right_area">
-			<?php 
-				skin_container( NT_("Sidebar 2"), array(
+
+			<?php	skin_container( NT_("Sidebar 2"), array(
 							'block_start' => '<div class="evo_widget widget $wi_class$">',
 							'block_end'  => '</div>',
 							'item_start' => '<li>',
@@ -325,7 +330,7 @@ if( $is_pictured_page )
 						) );
 			?>
 			</div>
-			
+			<?php } ?>
         </div><!-- .row -->
 
     </div><!-- .container -->
@@ -347,7 +352,7 @@ if( $is_pictured_page )
 			    // Display container and contents:
 			    skin_container(NT_('Front Page Secondary Area'), array(
 			        // The following params will be used as defaults for widgets included in this container:
-			        'block_start' => '<div class="widget $wi_class$">',
+			        'block_start' => '<div class="evo_widget widget $wi_class$">',
 			        'block_end' => '</div>',
 			        'block_title_start' => '<h2 class="page-header">',
 			        'block_title_end' => '</h2>',

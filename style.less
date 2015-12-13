@@ -144,14 +144,13 @@ textarea,
     -webkit-font-smoothing: subpixel-antialiased;
     position: relative;
 }
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-.main a {
+textarea:focus {
+	outline: none !important;
+	border-top: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+    box-shadow: none !important;
 }
-
 
 .main a {
     text-decoration: none;
@@ -662,7 +661,7 @@ svg {
 }
 
 
-.pageHeader, .evo_container__header {
+.pageHeader, .evo_container__header, .evo_container__page_top {
     padding: 2em 0 0;
 
     .evo_widget, .widget {
@@ -679,6 +678,9 @@ svg {
 
 }
 
+.disp_login .evo_container__header, .disp_login .evo_container__page_top {
+	padding-bottom: 2em;
+}
 
 .widget_core_coll_avatar {
 
@@ -837,7 +839,6 @@ svg {
                 -moz-transform: scale(1.1);
                 -ms-transform: scale(1.1);
                 -o-transform: scale(1.1);
-                transform: scale(1.1);
             }
 
 
@@ -1446,7 +1447,7 @@ svg {
     }
 }
 
-.disp_user .widget_core_user_links .ufld_icon_links {
+.disp_user .widget_core_user_links .ufld_icon_links, .disp_login .widget_core_user_links .ufld_icon_links {
     text-align: right;
     a{
         width: 40px;
@@ -1454,6 +1455,9 @@ svg {
     }
 }
 
+.disp_login .widget_core_user_links .ufld_icon_links a span:before {
+	color: #fff;
+}
 
 body .main .ufld_icon_links {
     text-align: left;
@@ -2307,8 +2311,6 @@ body .main .ufld_icon_links {
 
 
     .widget {
-        max-width: 100%;
-        width: 100%;
         vertical-align: top;
         margin-bottom: 3em;
 
@@ -2513,8 +2515,6 @@ body .main .ufld_icon_links {
 
     .widget {
         display: inline-block;
-        min-width: 32%;
-        width: 32%;
         margin: 0 2% 2em 0;
         text-align: left;
         padding: 2em;
@@ -3566,4 +3566,47 @@ div.action_messages, div.log_container {
 	h2, h3 {
 		color: #448aff
 	}
+}
+.SaveButton {
+	    background: #ededed !important;
+}
+        @btn-background: #f7f7f7;
+        @btn-background-hover: #f4f4f4;
+        @btn-margin: 0.6em;
+.evo_panel__login {
+	max-width: 550px;
+	margin: 0px auto;
+	.skin-form {
+		.panel-heading .close {
+			top: -32px;
+		}
+		.form-group .control-buttons {
+			.btn-success, .btn-primary.pull-right {
+				float: none !important;
+				display: inline-block;
+				background: @btn-background;
+				color: @primarycolor;
+				margin: @btn-margin;
+				border: 0 !important;
+				padding: 14px 16px !important;
+				border-radius: 0 !important;
+				text-transform: uppercase !important;
+				&:hover {
+					background: @btn-background-hover;
+				}
+			}
+		}
+
+			input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus {
+				border-top: 0 !important;
+				border-left: 0 !important;
+				border-right: 0 !important;
+				outline: none !important;
+				box-shadow: none !important;
+			}
+	}
+}
+
+.evo_login_dialog_standard_link a, .evo_login_dialog_footer {
+	color: #fff;
 }

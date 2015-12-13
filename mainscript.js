@@ -134,6 +134,7 @@
     /* Main Area Widget Aligns */
 
     var main_area = $('.front_main_content');
+	var sidebar2_area = $('.main_right_area');
 
     $(main_area).ready(function() {
 
@@ -156,6 +157,7 @@
         });
         
         $(main_area).addClass('load');
+		$(sidebar2_area).addClass('load');
 
     });
 
@@ -365,5 +367,13 @@
         });
           
     });
+	
+  // Changing the placeholder in the login form
+  $('#login_form').find("input#x").each(function(ev)
+  {
+      if(!$(this).val()) { 
+     $(this).attr("placeholder", "Username / Email");
+  }
+  });
 
 })(jQuery);
