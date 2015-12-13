@@ -107,7 +107,7 @@ if( $is_pictured_page )
                     }
                     ?>
         <div class="row">
-            <div class="<?php if( in_array( $disp, array( 'threads', 'login' ) ) ) {echo 'col-md-12';}else{echo 'col-md-6';} echo $disp == 'front' ? ' front_main_area' : ''; ?>">
+            <div class="<?php if( $disp != 'front' ) {echo 'col-md-12';}else{echo 'col-md-6';} echo $disp == 'front' ? ' front_main_area' : ''; ?>">
 
 		<main><!-- This is were a link like "Jump to main content" would land -->
 
@@ -313,9 +313,9 @@ if( $is_pictured_page )
 
             </div><!-- .col -->
 			
-			<?php if ( in_array( $disp, array( 'threads', 'login' ) ) ) { // Don't display Sidebar 2 on disp=threads
+			<?php if ( $disp != 'front' ) { // Don't display Sidebar 2 on disp=threads
 				
-			} else { 
+			} else {
 			// ==================== START OF RIGHT MAIN SECTION SIDE ====================
 			?>
 			
