@@ -184,21 +184,23 @@
     function label_animation(input, label) {
 
         $(input).ready(function() {
+            if( $(input).length > 0 ) {
 
-            $(input).focusin(function() {
-                $(label).addClass('label-hide');
-            });
+                $(input).focusin(function() {
+                    $(label).addClass('label-hide');
+                });
 
-            if ($(input).val().length < 1) {
-                $(label).removeClass('label-hide');
-            }
-
-            $(input).focusout(function() {
-
-                if ($(this).val().length < 1) {
+                if ($(input).val().length < 1) {
                     $(label).removeClass('label-hide');
                 }
-            });
+
+                $(input).focusout(function() {
+
+                    if ($(this).val().length < 1) {
+                        $(label).removeClass('label-hide');
+                    }
+                });
+            }
 
         });
 
