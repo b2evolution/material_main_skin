@@ -1537,8 +1537,6 @@ body .main .ufld_icon_links {
         -webkit-transition: background 0.2s;
         -moz-transition: background 0.2s;
         transition: background 0.2s;
-        width: auto;
-        height: auto;
     }
 
     a:hover {
@@ -3609,4 +3607,55 @@ div.action_messages, div.log_container {
 
 .evo_login_dialog_standard_link a, .evo_login_dialog_footer {
 	color: #fff;
+}
+
+.disp_search {
+	.widget_core_coll_search_form {
+		padding: 1em 1em 0em 1em;
+		.extended_search_form .input-group {
+			width: 100% !important;
+		}
+	}
+	.search_result {
+		margin: 1.5em 0;
+		padding: 1.5em;
+		background: #f7f7f7;
+		box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.6);
+		.search_result_score {
+			float: right;
+		}
+		.search_content_wrap {
+			margin: 0;
+			.result_content {
+				margin: 1em 0;
+			}
+			.search_info.dimmed {
+				display: inline-block;
+				img {
+					margin-right: 5px;
+					vertical-align: middle;
+				}
+				a {
+					margin-right: 5px;
+				}
+				.user {
+					margin-right: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+.disp_threads .btn-toolbar {
+	background: transparent !important;
+	.btn-toolbar-title {
+		margin-right: 5px;
+	}
+	.btn-group {
+		margin: 0 !important;
+		input {
+			background: #e7e7e7;
+			margin: 0 5px 5px 0;
+		}
+	}
 }
