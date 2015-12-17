@@ -15,6 +15,9 @@ In the Secondary Area, widgets are displayed in full container width, but you ca
 --- 
 
 ### Update Log
+#### v1.2
+- Search field script update and search disp layout fixes
+- Disp threads layout update
 #### v1.1
 - login display fixed (including the login form)
 - removed hardcoded widgets positioning in the Main Page Area
