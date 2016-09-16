@@ -17,7 +17,7 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
  */
 class material_main_Skin extends Skin
 {
-	var $version = '1.1';
+	var $version = '1.2.1';
 	/**
 	 * Do we want to use style.min.css instead of style.css ?
 	 */
@@ -79,117 +79,141 @@ class material_main_Skin extends Skin
 	function get_param_definitions( $params )
 	{
 		$r = array_merge( array(
-				// Front page
-				'front_bg_image' => array(
-					'label' => T_('Front page background image'),
-					'defaultvalue' => 'shared/global/sunset/sunset.jpg',
-					'type' => 'text',
-					'size' => '50'
+				'1_start' => array(
+					'layout' => 'begin_fieldset',
+					'label'  => T_('Image section')
 				),
-				'front_title_color' => array(
-					'label' => T_('Front page background text color'),
-					'note' => T_('E-g: #ff0000 for red'),
-					'defaultvalue' => '#FFFFFF',
-					'type' => 'color',
-				),
-				'front_text_color' => array(
-					'label' => T_('Front page text color'),
-					'note' => T_('E-g: #00ff00 for green'),
-					'defaultvalue' => '#666',
-					'type' => 'color',
-				),
-				'front_link_color' => array(
-					'label' => T_('Front page primary color'),
-					'note' => T_('E-g: #0000ff for blue'),
-					'defaultvalue' => '#448AFF',
-					'type' => 'color',
-				),
-				'front_icon_color' => array(
-					'label' => T_('Front page inverse icon color'),
-					'note' => T_('E-g: #00ff00 for green'),
-					'defaultvalue' => '#FFFFFF',
-					'type' => 'color',
-				),
-				'front_bg_color' => array(
-					'label' => T_('Front page main area background color'),
-					'note' => T_('E-g: #ff0000 for red'),
-					'defaultvalue' => '#F1F1F1',
-					'type' => 'color',
-				),
-				'front_bg_opacity' => array(
-					'label' => T_('Front page main area widget opacity'),
-					'note' => '%',
-					'size' => '2',
-					'maxlength' => '3',
-					'defaultvalue' => '100',
-					'type' => 'integer',
-					'valid_range' => array(
-						'min' => 0, // from 0%
-						'max' => 100, // to 100%
+					'front_bg_image' => array(
+						'label' => T_('Front page background image'),
+						'defaultvalue' => 'shared/global/sunset/sunset.jpg',
+						'type' => 'text',
+						'size' => '50'
 					),
+					'front_title_color' => array(
+						'label' => T_('Front page background text color'),
+						'note' => T_('Click to select a color.'),
+						'defaultvalue' => '#FFFFFF',
+						'type' => 'color',
+					),
+					'front_text_color' => array(
+						'label' => T_('Front page text color'),
+						'note' => T_('Click to select a color.'),
+						'defaultvalue' => '#666',
+						'type' => 'color',
+					),
+					'front_link_color' => array(
+						'label' => T_('Front page primary color'),
+						'note' => T_('Click to select a color.'),
+						'defaultvalue' => '#448AFF',
+						'type' => 'color',
+					),
+					'front_icon_color' => array(
+						'label' => T_('Front page inverse icon color'),
+						'note' => T_('Click to select a color.'),
+						'defaultvalue' => '#FFFFFF',
+						'type' => 'color',
+					),
+					'front_bg_color' => array(
+						'label' => T_('Front page main area background color'),
+						'note' => T_('Click to select a color.'),
+						'defaultvalue' => '#F1F1F1',
+						'type' => 'color',
+					),
+					'front_bg_opacity' => array(
+						'label' => T_('Front page main area widget opacity'),
+						'note' => '%.',
+						'size' => '7',
+						'maxlength' => '3',
+						'defaultvalue' => '100',
+						'type' => 'integer',
+						'valid_range' => array(
+							'min' => 0, // from 0%
+							'max' => 100, // to 100%
+						),
+					),
+				'1_end' => array(
+					'layout' => 'end_fieldset',
 				),
-				// Colorbox
-				'colorbox' => array(
-					'label' => T_('Colorbox Image Zoom'),
-					'note' => T_('Check to enable javascript zooming on images (using the colorbox script)'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
+				
+				
+				'section_colorbox_start' => array(
+					'layout' => 'begin_fieldset',
+					'label'  => T_('Colorbox Image Zoom')
 				),
-				'colorbox_vote_post' => array(
-					'label' => T_('Voting on Post Images'),
-					'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
+					'colorbox' => array(
+						'label' => T_('Colorbox Image Zoom'),
+						'note' => T_('Check to enable javascript zooming on images (using the colorbox script)'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_post' => array(
+						'label' => T_('Voting on Post Images'),
+						'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_post_numbers' => array(
+						'label' => T_('Display Votes'),
+						'note' => T_('Check to display number of likes and dislikes'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_comment' => array(
+						'label' => T_('Voting on Comment Images'),
+						'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_comment_numbers' => array(
+						'label' => T_('Display Votes'),
+						'note' => T_('Check to display number of likes and dislikes'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_user' => array(
+						'label' => T_('Voting on User Images'),
+						'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+					'colorbox_vote_user_numbers' => array(
+						'label' => T_('Display Votes'),
+						'note' => T_('Check to display number of likes and dislikes'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+				'section_colorbox_end' => array(
+					'layout' => 'end_fieldset',
 				),
-				'colorbox_vote_post_numbers' => array(
-					'label' => T_('Display Votes'),
-					'note' => T_('Check to display number of likes and dislikes'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
+				
+				
+				'section_username_start' => array(
+					'layout' => 'begin_fieldset',
+					'label'  => T_('Username options')
 				),
-				'colorbox_vote_comment' => array(
-					'label' => T_('Voting on Comment Images'),
-					'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
+					'gender_colored' => array(
+						'label' => T_('Display gender'),
+						'note' => T_('Use colored usernames to differentiate men & women.'),
+						'defaultvalue' => 0,
+						'type' => 'checkbox',
+					),
+					'bubbletip' => array(
+						'label' => T_('Username bubble tips'),
+						'note' => T_('Check to enable bubble tips on usernames'),
+						'defaultvalue' => 0,
+						'type' => 'checkbox',
+					),
+					'autocomplete_usernames' => array(
+						'label' => T_('Autocomplete usernames'),
+						'note' => T_('Check to enable auto-completion of usernames entered after a "@" sign in the comment forms'),
+						'defaultvalue' => 1,
+						'type' => 'checkbox',
+					),
+				'section_username_end' => array(
+					'layout' => 'end_fieldset',
 				),
-				'colorbox_vote_comment_numbers' => array(
-					'label' => T_('Display Votes'),
-					'note' => T_('Check to display number of likes and dislikes'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
-				),
-				'colorbox_vote_user' => array(
-					'label' => T_('Voting on User Images'),
-					'note' => T_('Check this to enable AJAX voting buttons in the colorbox zoom view'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
-				),
-				'colorbox_vote_user_numbers' => array(
-					'label' => T_('Display Votes'),
-					'note' => T_('Check to display number of likes and dislikes'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
-				),
-				// Other settings
-				'gender_colored' => array(
-					'label' => T_('Display gender'),
-					'note' => T_('Use colored usernames to differentiate men & women.'),
-					'defaultvalue' => 0,
-					'type' => 'checkbox',
-				),
-				'bubbletip' => array(
-					'label' => T_('Username bubble tips'),
-					'note' => T_('Check to enable bubble tips on usernames'),
-					'defaultvalue' => 0,
-					'type' => 'checkbox',
-				),
-				'autocomplete_usernames' => array(
-					'label' => T_('Autocomplete usernames'),
-					'note' => T_('Check to enable auto-completion of usernames entered after a "@" sign in the comment forms'),
-					'defaultvalue' => 1,
-					'type' => 'checkbox',
-				),
+				
+				
 			), parent::get_param_definitions( $params ) );
 
 		return $r;

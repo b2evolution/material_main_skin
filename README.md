@@ -16,6 +16,12 @@ In the Secondary Area, widgets are displayed in full container width, but you ca
 
 ### Update Log
 
+#### v1.2.1
+- Implemented LESS modules for different widget layouts
+- Fixed pagination style issue
+- Modified back-office customization translation strings
+- Additional small skin fixes
+
 #### v1.2
 - Search field script update and search disp layout fixes
 - Disp threads layout update
