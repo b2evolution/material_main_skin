@@ -17,7 +17,7 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
  */
 class material_main_Skin extends Skin
 {
-	var $version = '1.2.1';
+	var $version = '1.2.2';
 	/**
 	 * Do we want to use style.min.css instead of style.css ?
 	 */
@@ -68,7 +68,7 @@ class material_main_Skin extends Skin
 		return 6;
 	}
 
-	
+
 	/**
 	 * Get supported collection kinds.
 	 *
@@ -94,9 +94,9 @@ class material_main_Skin extends Skin
 			);
 
 		return $supported_kinds;
-	}      
+	}
 
-	
+
 	/**
 	 * Get definitions for editable params
 	 *
@@ -108,42 +108,42 @@ class material_main_Skin extends Skin
 		$r = array_merge( array(
 				'1_start' => array(
 					'layout' => 'begin_fieldset',
-					'label'  => T_('Image section')
+					'label'  => T_('Front Page Settings')
 				),
 					'front_bg_image' => array(
-						'label' => T_('Front page background image'),
+						'label' => T_('Background image'),
 						'defaultvalue' => 'shared/global/sunset/sunset.jpg',
 						'type' => 'text',
 						'size' => '50'
 					),
-					'front_title_color' => array(
-						'label' => T_('Front page background text color'),
-						'note' => T_('Click to select a color.'),
+					'front_bg_color' => array(
+						'label' => T_('Image section background color'),
+						'note' => T_('Click to select the background color of the image section, if the background image is not set or does not exist.'),
+						'defaultvalue' => '#F1F1F1',
+						'type' => 'color',
+					),
+					'site_info_color' => array(
+						'label' => T_('Site info color'),
+						'note' => T_('Click to select color of site title and tagline.'),
 						'defaultvalue' => '#FFFFFF',
 						'type' => 'color',
 					),
-					'front_text_color' => array(
-						'label' => T_('Front page text color'),
-						'note' => T_('Click to select a color.'),
-						'defaultvalue' => '#666',
-						'type' => 'color',
-					),
+					// 'front_text_color' => array(
+						// 'label' => T_('Front page text color'),
+						// 'note' => T_('Click to select a color.'),
+						// 'defaultvalue' => '#666',
+						// 'type' => 'color',
+					// ),
 					'front_link_color' => array(
-						'label' => T_('Front page primary color'),
+						'label' => T_('Primary color'),
 						'note' => T_('Click to select a color.'),
 						'defaultvalue' => '#448AFF',
 						'type' => 'color',
 					),
 					'front_icon_color' => array(
-						'label' => T_('Front page inverse icon color'),
+						'label' => T_('Inverse icon color'),
 						'note' => T_('Click to select a color.'),
 						'defaultvalue' => '#FFFFFF',
-						'type' => 'color',
-					),
-					'front_bg_color' => array(
-						'label' => T_('Front page main area background color'),
-						'note' => T_('Click to select a color.'),
-						'defaultvalue' => '#F1F1F1',
 						'type' => 'color',
 					),
 					'front_bg_opacity' => array(
@@ -284,34 +284,20 @@ class material_main_Skin extends Skin
 
 			if( $color = $this->get_setting( 'front_bg_color' ) )
 			{ // Custom body background color:
-				$color_transparency = floatval( $this->get_setting( 'front_bg_opacity' ) / 100 );
-				$color = substr( $color, 1 );
-				if( strlen( $color ) == '6' )
-				{ // Color value in format #FFFFFF
-					$color = str_split( $color, 2 );
-				}
-				else
-				{ // Color value in format #FFF
-					$color = str_split( $color, 1 );
-					foreach( $color as $c => $v )
-					{
-						$color[ $c ] = $v.$v;
-					}
-				}
-				$custom_css .= '#skin_wrapper { background-color: rgba('.implode( ',', array_map( 'hexdec', $color ) ).','.$color_transparency.')'." }\n";
+				$custom_css .= '#bg_picture { background-color: ' . $color ." }\n";
 			}
 
-			if( $color = $this->get_setting( 'front_title_color' ) )
+			if( $color = $this->get_setting( 'site_info_color' ) )
 			{ // Custom title color:
-				$custom_css .= 'body.pictured .widget_core_coll_title h1 a, .widget_core_coll_tagline.evo_widget, .main_top .widget_core_coll_media_index h2 { color: '.$color." }\n";
+				$custom_css .= 'body.pictured .widget_core_coll_title h2 a, .evo_widget.widget_core_coll_tagline { color: '.$color." }\n";
 			}
 
-			if( $color = $this->get_setting( 'front_text_color' ) )
-			{ // Custom text color:
-				$custom_css .= '.content p, .content li, .content td, .content dd, .secondary_area .widget,'
-                                        . ' .evo_widget, .evo_widget .user_group, .evo_widget .user_level'
-                                        . ' { color: '.$color." }\n";
-			}
+			// if( $color = $this->get_setting( 'front_text_color' ) )
+			// { // Custom text color:
+				// $custom_css .= '.content p, .content li, .content td, .content dd, .secondary_area .widget,'
+                                        // . ' .evo_widget, .evo_widget .user_group, .evo_widget .user_level,'
+                                        // . '#skin_wrapper { color: '.$color." }\n";
+			// }
 
 			$link_color = $this->get_setting( 'front_link_color' );
 			$icon_color = $this->get_setting( 'front_icon_color' );
@@ -342,12 +328,15 @@ class material_main_Skin extends Skin
                                         . ' .secondary_area .widget_core_coll_longdesc h2, .secondary_area .widget_core_user_tools h2, '
                                         
                                         . ' .main .pagination>li>a:hover, .main .pagination>li>span:hover, .main .pagination>li>.current, .main .pager li>a, .main .pager li>span,'
-                                        . ' .profile_column_right .panel-default .panel-heading, #skin_wrapper .profile_column_left h1'
-                                        . ''
-                                        
-                                        . '{ color: '.$link_color." }\n";
-                                
-                                $custom_css .= '.secondary_area .widget h2 { background: '.$link_color." }\n";
+					. ' .profile_column_right .panel-default .panel-heading, #skin_wrapper .profile_column_left h1,'
+					. '
+					.evo_widget > h3
+						
+				       
+					'
+					. '{ color: '.$link_color." }\n";
+						
+					$custom_css .= '.secondary_area .widget h2, #bCalendarToday { background: '.$link_color." }\n";
                                 
                                 
                                 $custom_css .= 'input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus,'

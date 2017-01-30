@@ -236,6 +236,8 @@
 
         $(widget_list).find('h4').detach();
         $(widget_list).find('ul').detach();
+		// from 1.2.2 - Allow material containers for rwd blocks
+        $(widget_list).find('.widget_rwd_blocks').detach();
 
         $(widget_list).addClass('visible');
 
