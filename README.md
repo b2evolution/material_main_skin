@@ -16,6 +16,11 @@ In the Secondary Area, widgets are displayed in full container width, but you ca
 
 ### Update Log
 
+#### v1.2.2
+- Supported collection kinds function added
+- Customization options update
+- Translation strings update
+
 #### v1.2.1
 - Implemented LESS modules for different widget layouts
 - Fixed pagination style issue
