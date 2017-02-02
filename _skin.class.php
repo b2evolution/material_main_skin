@@ -111,7 +111,7 @@ class material_main_Skin extends Skin
 					'label'  => T_('Front Page Settings')
 				),
 					'front_bg_image' => array(
-						'label' => T_('Background image'),
+						'label' => T_('Image section background image'),
 						'defaultvalue' => 'shared/global/sunset/sunset.jpg',
 						'type' => 'text',
 						'size' => '50'
@@ -146,18 +146,18 @@ class material_main_Skin extends Skin
 						'defaultvalue' => '#FFFFFF',
 						'type' => 'color',
 					),
-					'front_bg_opacity' => array(
-						'label' => T_('Front page main area widget opacity'),
-						'note' => '%.',
-						'size' => '7',
-						'maxlength' => '3',
-						'defaultvalue' => '100',
-						'type' => 'integer',
-						'valid_range' => array(
-							'min' => 0, // from 0%
-							'max' => 100, // to 100%
-						),
-					),
+					// 'front_bg_opacity' => array(
+						// 'label' => T_('Front page main area widget opacity'),
+						// 'note' => '%.',
+						// 'size' => '7',
+						// 'maxlength' => '3',
+						// 'defaultvalue' => '100',
+						// 'type' => 'integer',
+						// 'valid_range' => array(
+							// 'min' => 0, // from 0%
+							// 'max' => 100, // to 100%
+						// ),
+					// ),
 				'1_end' => array(
 					'layout' => 'end_fieldset',
 				),
