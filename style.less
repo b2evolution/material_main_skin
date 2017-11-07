@@ -593,8 +593,6 @@ svg {
     display: table;
     width: 100%;
     height: 100%;
-    background: #fff;
-    z-index: 3;
     position: relative;
 
     .main_top {
@@ -640,8 +638,7 @@ svg {
 
                 /* Front Main Widget Aligns */
 
-                .evo_widget, .widget {
-                    float: left;
+                .evo_widget {
                     clear: both;
                     margin: 0;
                     margin-bottom: 1em;
@@ -683,10 +680,9 @@ svg {
 
 
 .pageHeader, .evo_container__header, .evo_container__page_top {
-    padding: 2em 0 0;
+    margin: 2em 0 0;
 
-    .evo_widget, .widget {
-        float: left;
+    .evo_widget {
         clear: both;
         margin: 0;
         margin-bottom: 1em;
@@ -964,7 +960,7 @@ svg {
 
 /* List Widgets */
 
-.front_main_content .widget[class$="list"] {
+.front_main_content .evo_widget[class$="list"] {
     visibility: hidden;
     opacity: 0;
 }
@@ -1243,7 +1239,7 @@ div.widget_core_coll_comment_list {
 
 
 
-.evo_container__front_page_primary {
+.evo_container__front_page_main_area {
 
     article, .widget_core_org_members {
         float: left;
@@ -1595,7 +1591,7 @@ body .main .ufld_icon_links {
 
 /* Widget Lists */
 
-.evo_widget, .widget {
+.evo_widget {
 
     ul {
 
@@ -2312,7 +2308,7 @@ body .main .ufld_icon_links {
 
 
 
-    .widget[class$="list"] {
+    .evo_widget[class$="list"] {
         background: @defaultcolor;
         box-shadow: 0 2px 5px -1px rgba(0,0,0,.6);
         padding: 2em;
@@ -2350,7 +2346,7 @@ body .main .ufld_icon_links {
     }
 
 
-    .widget {
+    .evo_widget {
         vertical-align: top;
         margin-bottom: 3em;
 
@@ -2455,7 +2451,7 @@ body .main .ufld_icon_links {
         font-weight: 300 !important;
     }
 
-    .widget {
+    .evo_widget {
         color: #000;
 
         p {
@@ -2553,30 +2549,30 @@ body .main .ufld_icon_links {
     padding: 0em 0 2em;
     text-align: left;
 
-    .widget {
+    .evo_widget {
         display: inline-block;
         margin: 0 2% 2em 0;
         text-align: left;
         padding: 2em;
     }
 
-    .widget:nth-child(3n) {
+    .evo_widget:nth-child(3n) {
         margin-right: 0;
     }
 
 
     @media only screen and (max-width: 1200px) {
-        .widget {
+        .evo_widget {
             width: 48%;
             min-width: 48;
             margin: 0 4% 2em 0;
         }
 
-        .widget:nth-child(2n) {
+        .evo_widget:nth-child(2n) {
             margin-right: 0;
         }
 
-        .widget:nth-child(3n) {
+        .evo_widget:nth-child(3n) {
             margin-right: 4%;
         }
 
@@ -2584,16 +2580,16 @@ body .main .ufld_icon_links {
 
 
     @media only screen and (max-width: 990px) {
-        .widget {
+        .evo_widget {
             width: 100%;
             margin: 0 0% 2em 0;
         }
 
-        .widget:nth-child(2n) {
+        .evo_widget:nth-child(2n) {
             margin-right: 0;
         }
 
-        .widget:nth-child(3n) {
+        .evo_widget:nth-child(3n) {
             margin-right: 0;
         }
 
